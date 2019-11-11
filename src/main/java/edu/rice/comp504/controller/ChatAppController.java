@@ -29,6 +29,12 @@ public class ChatAppController {
         gson = new Gson();
         webSocket("/chatapp", WebSocketController.class);
         init();
+
+
+        get("/chat", (req, res)->{
+            res.redirect("/chat.html");
+            return null;
+        });
        // System.out.println(web)
     }
 
