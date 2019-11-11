@@ -24,7 +24,7 @@ public class WebSocketController {
         //otherwise create new user
         String username = "User" + ChatAppController.nextUserId++;
         ChatAppController.userNameMap.put(user, username);
-        //System.out.println(username);
+        System.out.println(username);
     }
 
     /**
@@ -33,9 +33,10 @@ public class WebSocketController {
      */
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
-        //
         String username = ChatAppController.userNameMap.get(user);
-        ChatAppController.userNameMap.remove(user);
+
+        // do not remove this session.
+//        ChatAppController.userNameMap.remove(user);
     }
 
     /**
@@ -48,6 +49,6 @@ public class WebSocketController {
        // message.setFrom(users.get(session.getId()));
         String sender = ChatAppController.userNameMap.get(user);
         ChatAppController.broadcastMessage(sender,message);
-        //System.out.println(message);
+        System.out.println(message);
     }
 }
