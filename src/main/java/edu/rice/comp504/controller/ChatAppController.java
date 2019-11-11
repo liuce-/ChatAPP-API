@@ -40,8 +40,6 @@ public class ChatAppController {
     static void broadcastMessage(User sender, String message) {
         userNameMap.keySet().forEach(session -> {
             try {
-                JsonObject jo = new JsonObject();
-                jo.addProperty("userMessage",p(gson.toJson(sender) + " says " + message).render());
                 session.getRemote().sendString(gson.toJson(sender) + " says " + message);
             } catch (Exception e) {
                 e.printStackTrace();
