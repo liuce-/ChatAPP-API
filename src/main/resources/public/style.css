@@ -1,0 +1,606 @@
+/* common style for all pages */
+* {
+    margin: 0;
+    padding: 0;
+}
+ul, li {
+    list-style: none;
+}
+body {
+    background: skyblue;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+.hidden {
+    display: none !important;
+}
+.pl-10 {
+    padding-left: 10px !important;
+}
+.pr-10 {
+    padding-right: 10px !important;
+}
+.justify-start {
+    justify-content: flex-start !important;
+}
+.justify-end {
+    justify-content: flex-end !important;
+}
+.color-white {
+    color: #fff !important;
+}
+.color-dark {
+    color: #353535 !important;
+}
+.background-blue {
+    background: #2979FF !important;
+}
+.background-light {
+    background: #F3F3F3 !important;
+}
+.own-icon {
+    color: red;
+    font-weight: 900;
+}
+
+/* common style for the pop-up dialogue */
+.cover{
+    position:fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background:#000;
+    opacity: 0.7;
+}
+.box{
+    min-width: 380px;
+    padding: 20px;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+}
+.box h4{
+    text-align: center;
+    color: red;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.box .close{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: #eee;
+    color: orange;
+    font-weight: 700;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.box .btn-wrapper {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+}
+.box .btn{
+    display: inline-block;
+    margin: 0 auto;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background-color: mediumpurple;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* home page under `home-` namespace */
+.home-title {
+    text-align: center;
+    background-color: green;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    font-weight: 700;
+}
+.home-wrapper {
+    padding: 0 20px;
+}
+.home-content {
+    display: flex;
+    padding: 10px 0 30px 0;
+    margin: 50px auto 0;
+    width: 70%;
+    background-color: lightgray;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+.home-rooms-wrapper {
+    flex-basis: 30%;
+}
+.home-joined-title {
+    margin: 20px 0;
+    padding: 2px 8px;
+    background-color: lightgoldenrodyellow;
+    color: darkgreen;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-align: center;
+}
+.home-list li{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.home-list .name {
+    display: inline-block;
+    color: darkslateblue;
+    font-weight: 600;
+    font-size: 18px;
+    flex-basis: 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.home-list .join-btn {
+    padding: 4px 12px;
+    background-color: lightgreen;
+    color: blue;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.home-list .join-btn:hover {
+    background-color: lime;
+}
+.home-button-wrapper {
+    align-self: center;
+}
+.home-button-wrapper .btn {
+    display: block;
+    margin: 20px 0;
+    padding: 6px 10px;
+    background-color: peru;
+    color: blue;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.home-button-wrapper .btn:hover{
+    background-color: lightsalmon;
+}
+
+/* message dialogue for profile */
+.home-profile-box .dialog-content {
+    padding: 10px 20px;
+}
+.home-profile-box li {
+    margin: 10px;
+}
+.home-profile-box .profile-tit, .home-profile-boxx .profile-val{
+    display: inline-block;
+    color: darkblue;
+    font-weight: 600;
+    font-size: 18px;
+}
+.home-profile-box .profile-val{
+    padding-left: 12px;
+    color: darkslateblue;
+}
+
+/* message dialogue for creating new room */
+.home-create-box .dialog-content {
+    padding: 10px 20px;
+}
+.home-create-box .item {
+    margin: 20px;
+}
+.home-create-box .item .tit{
+    display: block;
+    margin-bottom: 4px;
+    color: darkblue;
+}
+.home-create-box .item input{
+    width: 94%;
+    height: 30px;
+    padding: 2px 3%;
+    line-height: 30px;
+}
+.home-create-box .restriction {
+    margin-left: 20px;
+    background-color: dodgerblue;
+    color: yellow;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 16px;
+    text-align: center;
+    padding: 4px 0;   
+}
+
+
+/* index page under `index-` namespace */
+.index-title {
+    text-align: center;
+    background-color: green;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+}
+.index-intro{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    color: darkblue;
+    font-weight: 700;
+}
+.index-content-wrapper {
+    margin-top: 40px; 
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 60px;
+    justify-content: center;
+}
+.index-form {
+    position: relative;
+    width: 400px;
+    padding: 20px 20px 30px;
+    background: lightgrey;
+    border-radius: 10px;;
+}
+.index-form .title{
+    font-size: 24px;
+    color: darkgreen;
+    text-align: center;
+    font-weight: 700;
+    background-color: lightgoldenrodyellow;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+.index-form .item {
+    margin: 26px;
+    position: relative;
+}
+.index-login-form .item .tit{
+    display: block;
+    margin-bottom: 8px;
+}
+.index-form .item input{
+    width: 94%;
+    height: 30px;
+    padding: 2px 3%;
+    line-height: 30px;
+}
+.index-login-form .err-tip{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    display: inline-block;
+    max-width: 250px;
+    padding-left: 6px;
+    font-size: 14px;
+    color: red;
+}
+.index-form .btn-wrapper {
+    position: relative;
+    text-align: center;
+}
+.index-form .login-tip-error {
+    position: absolute;
+    top: 0;
+    left: 31px;
+    color: red;
+    font-size: 14px;
+}
+.index-form button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 4px 18px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    font-size: 22px;
+    font-weight: 700;
+    color: darkgreen;
+    cursor: pointer;
+}
+.index-form button:hover {
+    background-color: lime; 
+}
+.index-form .sign-tip {
+    margin-top: 14px;
+    color: darkblue;
+    font-size: 16px;
+    text-align: center;
+}
+.index-form .sign-tip span {
+    background-color: lightgreen;
+    padding: 4px 8px;
+    font-weight: bold;
+    color: blue;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.index-form .sign-tip span:hover{
+    background-color: lime; 
+}
+
+
+/* chatroom page under `room-` namespace */
+.room-title {
+    text-align: center;
+    background-color: green;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    font-weight: 700;
+}
+.room-page-wrapper {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+}
+.room-announce-wrapper {
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 10px;
+    flex-basis: 25%;
+}
+.room-announce-content {
+    border-radius: 14px;
+    padding: 12px;
+    background-color: aliceblue;
+}
+.room-announce-title {
+    margin: 10px 0 24px;
+    padding: 2px 10px;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 14px;
+    text-align: center; 
+}
+.room-announce-list li{
+    margin: 14px 0;
+    color: darkviolet;
+    border-bottom: 1px dashed #666;
+}
+.room-wrapper {
+    display: flex;
+    padding: 10px 0 30px 0;
+    flex-basis: 55%;
+    background-color: lightgray;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+.room-users-title {
+    margin: 10px 0 24px;
+    padding: 2px 10px;
+    background-color: lightgoldenrodyellow;
+    color: darkgreen;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 14px;
+    text-align: center;
+}
+.room-users-wrapper {
+    flex-basis: 55%;
+}
+.room-list li{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.room-list .name {
+    display: inline-block;
+    color: darkslateblue;
+    font-weight: 600;
+    font-size: 18px;
+    flex-basis: 50%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.room-list .btn {
+    padding: 4px 8px;
+    color: blue;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+.room-list .chat-btn {
+    background-color: lightgreen;
+}
+.room-list .chat-btn:hover {
+    background-color: lime;
+}
+.room-list .kick-btn {
+    color: cornsilk;
+    background-color: darkcyan;
+}
+.room-list .kick-btn:hover {
+    background-color: cadetblue;
+}
+
+/* chat page under `chat-` namespace */
+.chat-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 10px;
+    height: 60%;
+    width: 35%;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .chat-page-wrapper {
+      height: 100%;
+    }
+  
+    .chat-container {
+      width: 100%;
+      height: 100%;
+    }
+}
+  
+@media (min-width: 480px) and (max-width: 1200px) {
+    .chat-container {
+        width: 60%;
+    }
+}
+
+/* top bar */
+.chat-info-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2979FF;
+    border-radius: 4px 4px 0 0;
+    height: 60px;
+    width: 100%;
+}
+.chat-info-bar .left-inner {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    color: white;
+}
+.chat-info-bar .online-icon{
+    margin-top: 4px;
+    margin-right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: lightgreen;
+    border-radius: 50%;
+}
+.chat-info-bar .right-inner {
+    display: flex;
+    flex: 0.5;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+.chat-info-bar .close-icon {
+    color: #fff;
+    font-size: 18px;
+    margin-right: 5%;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* messages */
+.chat-messages-wrapper {
+    padding: 5% 0;
+    overflow: auto;
+    flex: auto;
+    position: relative;
+}
+.chat-messages {
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+}
+.chat-message-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 5%;
+    margin-top: 3px;
+}
+.chat-msg-name {
+    display: flex;
+    align-items: center;
+    color: #828282;
+    letter-spacing: 0.3px;
+}
+.chat-message {
+    background: #F3F3F3;
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: white;
+    display: inline-block;
+    max-width: 80%;
+}
+.chat-msg-text {
+    width: 100%;
+    letter-spacing: 0;
+    float: left;
+    font-size: 1.1em;
+    word-wrap: break-word;
+}  
+
+/* chat input */
+.chat-form {
+    display: flex;
+    border-top: 2px solid #D3D3D3;
+}
+.chat-form input {
+    border: none;
+    border-radius: 0;
+    padding: 5%;
+    width: 80%;
+    font-size: 16px;
+}
+.chat-form .send-button {
+    color: #fff;
+    text-transform: uppercase;
+    background: #2979FF;
+    padding: 20px;
+    display: inline-block;
+    border: none;
+    width: 20%;
+    cursor: pointer;
+}
+
+/* chat info on the right */
+.chat-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    color: white;
+    height: 60%;
+    justify-content: space-between;
+}
+.chat-info-tit {
+    padding: 2px 15px;
+    background-color: darkgreen;
+    color: cornsilk;
+    border-radius: 12px;
+}
+.chat-info-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50%;
+}
+.active-item {
+    margin: 10px 0;
+    color: darkblue;
+    font-size: 18px;
+}  
+@media (min-width: 320px) and (max-width: 1200px) {
+    .chat-info-wrapper {
+        display: none;
+    }
+}

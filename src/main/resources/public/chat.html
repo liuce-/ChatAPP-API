@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="js/chat.js"></script>
+</head>
+<body>
+    <div class="chat-page-wrapper">
+        <!-- chat dialogue -->
+        <div class="chat-container">
+            <!-- bar -->
+            <div class="chat-info-bar">
+                <div class="left-inner">
+                    <div class="online-icon"></div>
+                    <h3>xxxx</h3>
+                </div>
+                <div class="right-inner">
+                    <span class="close-icon">x</span>
+                </div>
+            </div>
+        
+            <!-- messages -->
+            <div class="chat-messages-wrapper">
+                <div class="chat-messages">
+                    <!-- sent by others -->
+                    <div>
+                        <div class="chat-message-container justify-start">
+                            <div class="chat-message background-light">
+                                <p class="chat-msg-text color-dark">hello hello 456</p>
+                            </div>
+                            <p class="chat-msg-name pl-10">asd</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chat-message-container justify-start">
+                            <div class="chat-message background-light">
+                                <p class="chat-msg-text color-dark">hello hello 45678</p>
+                            </div>
+                            <p class="chat-msg-name pl-10">asd</p>
+                        </div>
+                    </div>
+                    <!-- sent by current user -->
+                    <div>
+                        <div class="chat-message-container justify-end">
+                            <p class="chat-msg-name pr-10">abc</p>
+                            <div class="chat-message background-blue">
+                                <p class="chat-msg-text color-white">hello hello 123</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <!-- input text -->
+            <form class="chat-form">
+                <input type="text" placeholder="Type a message..." />
+                <button class="send-button">Send</button>
+            </form>
+        </div>
+
+        <!-- chat info on the right -->
+        <div class="chat-info-wrapper">
+            <div>
+                <h2 class="chat-info-tit">People currently chatting:</h2>
+                <div class="chat-info-content">
+                    <ul>
+                        <li class="active-item">aaa</li>
+                        <li class="active-item">aaa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

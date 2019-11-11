@@ -1,20 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/view.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Please Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
-<body>
-<div id="sendChat">
-    <input id="message" placeholder="type your message">
-    <button id="btn-msg">Send Message</button>
-    <P>Messages Received:</P>
-    <P id="show-msg"></P>
-</div>
-<div id="chatArea">
-</div>
+<body>  
+    <h1 class="index-title">Welcome to Chatapp</h1>
+    <div class="index-intro">
+        <p>You can have a lot of fun here, please register or login first.</p>
+    </div>
+      
+    <!-- register or login -->
+    <div class="index-content-wrapper">
+        <!-- login -->
+        <div class="index-login-form index-form">
+            <p class="title">Login</p>
+            <form>
+                <div class="item">
+                    <span class="tit">Username</span>
+                    <input type="text" placeholder="username" />
+                    <span class="err-tip hidden">username required</span>
+                </div>
+
+                <div class="btn-wrapper">
+                    <p class="login-tip-error hidden">username error!</p>
+                    <button>login</button>
+                </div>
+                <p class="sign-tip">If you do not have an account, please <span>Sign in</span> here.</p>
+            </form>
+        </div>
+
+        <!-- register -->
+        <div class="index-register-form index-form hidden">
+            <p class="title">Register</p>
+            <form>
+                <div class="item">
+                    <input type="text" placeholder="Username" />
+                </div>
+                <div class="item">
+                    <input type="text" placeholder="Age" />
+                </div>  
+                <div class="item">
+                    <input type="text" placeholder="Location" />
+                </div>  
+                <div class="item">
+                    <input type="text" placeholder="School" />
+                </div> 
+                
+                <div class="btn-wrapper">
+                    <p class="login-tip-error hidden">user already exist!</p>
+                    <button>register</button>
+                </div>
+                <p class="sign-tip">If you already have an account, please <span>Login in</span> here.</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

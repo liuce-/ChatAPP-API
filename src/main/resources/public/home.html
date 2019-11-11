@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="js/home.js"></script>
+</head>
+<body>
+    <h1 class="home-title">Welcome to the chat room</h1>
+
+    <div class="home-wrapper">  
+        <!-- rooms list -->
+        <div class="home-content">
+            <div class="home-rooms-wrapper">
+                <p class="home-joined-title">Your rooms</p>
+                <ul class="home-list">
+                    <li>
+                        <span class="name">aaaa</span>
+                        <span class="join-btn">Enter</span>
+                    </li>
+                    <li>
+                        <span class="name">aaaa<i class="own-icon">*</i></span>
+                        <span class="join-btn">Enter</span>
+                    </li>
+                    <li>
+                        <span class="name">aaaa</span>
+                        <span class="join-btn">Enter</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="home-rooms-wrapper">
+                <p class="home-joined-title">Rooms you can join</p>
+                <ul class="home-list">
+                    <li>
+                        <span class="name">aaaa</span>
+                        <span class="join-btn">Join</span>
+                    </li>
+                    <li>
+                        <span class="name">aaaa</span>
+                        <span class="join-btn">Join</span>
+                    </li>
+                    <li>
+                        <span class="name">aaaa</span>
+                        <span class="join-btn">Join</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- option butons -->
+            <div class="home-button-wrapper">
+                <span class="btn">Your Profile</span>
+                <span class="btn">Create room</span>
+                <span class="btn">Logout</span>
+                <p><i class="own-icon">*</i> means you own this room</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- profile dialogue -->
+    <div id="profile-dialog" class="hidden">
+        <div class="cover"></div>
+        <div class="box home-profile-box">
+            <h4>Your Profile</h4>
+            <div class="dialog-content">
+                <ul>
+                    <li>
+                        <span class="profile-tit">User:</span>
+                        <span class="profile-val">aaaa</span>
+                    </li>
+                    <li>
+                        <span class="profile-tit">Age:</span>
+                        <span class="profile-val">aaaa</span>
+                    </li>
+                    <li>
+                        <span class="profile-tit">Location:</span>
+                        <span class="profile-val">aaaa</span>
+                    </li>
+                    <li>
+                        <span class="profile-tit">School:</span>
+                        <span class="profile-val">aaaa</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-wrapper"><span class="btn" data-close="close">OK</span></div>
+            <span class="close" data-close="close">X</span>
+        </div>
+    </div>
+
+    <!-- create room dialogue -->
+    <div id="create-dialog" class="hidden">
+        <div class="cover"></div>
+        <div class="box home-create-box">
+            <h4>Create a new room</h4>
+            <div class="dialog-content">
+                <form>
+                    <div class="item">
+                        <span class="tit">Room name:</span>
+                        <input type="text" placeholder="Room name" />
+                    </div>
+                    <p class="restriction">restrictions</p>
+                    <div class="item">
+                        <span class="tit">Age</span>
+                    </div>  
+                    <div class="item">
+                        <span class="tit">Location</span>
+                    </div>  
+                    <div class="item">
+                        <span class="tit">School</span>
+                    </div> 
+                </form>
+            </div>
+            <div class="btn-wrapper"><span class="btn" data-close="close">Create</span></div>
+            <span class="close" data-close="close">X</span>
+        </div>
+    </div>
+</body>
+</html>
