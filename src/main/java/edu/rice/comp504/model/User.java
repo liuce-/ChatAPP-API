@@ -9,7 +9,7 @@ public class User {
     private String school;
     ArrayList<ChatRoom> chatRooms;
 
-    //do we need to keep track of individual chats?
+    // TODO: do we need to keep track of individual chats?
 
     public User(String un, int age, String school) {
         this.un = un;

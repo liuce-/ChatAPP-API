@@ -9,7 +9,7 @@ public class ChatRoom {
     Point ageRestriction;
     String locRestriction;
     String schoolRestriction;
-    //restrictions
+    // TODO: restrictions
 
     public ChatRoom (String name, Point ageRestriction, String locRestriction, String schoolRestriction) {
         this.name = name;
