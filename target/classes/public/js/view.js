@@ -35,6 +35,6 @@ webSocket.addEventListener('message', function (event) {
  * @param message  The message to update the chat room with.
  */
 function updateChatRoom(message) {
-    let msg = $("#show-msg").html() + "\n" + message;
+    let msg = $("#show-msg").html() + "<br>" + message;
     $("#show-msg").html(msg);
 }

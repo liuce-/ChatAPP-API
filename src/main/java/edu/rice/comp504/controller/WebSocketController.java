@@ -1,5 +1,6 @@
 package edu.rice.comp504.controller;
 
+import edu.rice.comp504.model.User;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
@@ -14,16 +15,17 @@ public class WebSocketController {
 
     /**
      * Open user's session.
-     * @param user The user whose session is opened.
+     * @param userSession The user whose session is opened.
      */
     @OnWebSocketConnect
-    public void onConnect(Session user) {
+    public void onConnect(Session userSession) {
         //user name is currently created automatically based on number
         // instead we will have user enter username to check if profile exists
         // if username in map - show existing chat rooms
         //otherwise create new user
         String username = "User" + ChatAppController.nextUserId++;
-        ChatAppController.userNameMap.put(user, username);
+        User user = new User(username);
+        ChatAppController.userNameMap.put(userSession, user);
         System.out.println(username);
     }
 
@@ -33,7 +35,7 @@ public class WebSocketController {
      */
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
-        String username = ChatAppController.userNameMap.get(user);
+        String username = ChatAppController.userNameMap.get(user).getUn();
 
         // do not remove this session.
 //        ChatAppController.userNameMap.remove(user);
@@ -47,7 +49,7 @@ public class WebSocketController {
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
        // message.setFrom(users.get(session.getId()));
-        String sender = ChatAppController.userNameMap.get(user);
+        User sender = ChatAppController.userNameMap.get(user);
         ChatAppController.broadcastMessage(sender,message);
         System.out.println(message);
     }
