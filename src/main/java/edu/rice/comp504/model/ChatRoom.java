@@ -9,14 +9,14 @@ public class ChatRoom {
     ArrayList<User> users;
     Restriction restriction;
 
-    public ChatRoom (String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction) {
+    public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction) {
         this.name = name;
         this.restriction = new Restriction(ageRestriction, locRestrictions, schoolRestriction);
     }
 
-    private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction){
+    private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction) {
         this.name = name;
-        this.restriction = new Restriction(ageRestriction, null ,null);
+        this.restriction = new Restriction(ageRestriction, null, null);
         HashSet<String> locRestrictions = new HashSet<String>();
         locRestrictions.add(locRestriction);
 
@@ -27,8 +27,24 @@ public class ChatRoom {
         restriction.setLocRestriction(locRestrictions);
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    private ChatRoom(String name) {
+        this.name = name;
+        this.restriction = new Restriction(null, null, null);
+    }
+
+
+    /**
+     * Add a user to this chat room (if qualified).
+     * @param user add this user.
+     * @return true if the user is qualified and added. False otherwise.
+     */
+    public boolean addUser(User user) {
+        if (restriction.isQualified(user)) {
+            users.add(user);
+            return true;
+        }
+        return false;
+
     }
 
 }
