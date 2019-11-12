@@ -1,12 +1,15 @@
 package edu.rice.comp504.model;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
+/**
+ * This class is for private chat.
+ */
 public class Chat {
-    ArrayList<User> users;
+    HashSet<User> users;
 
     public Chat() {
-        users = new ArrayList<User>();
+        users = new HashSet<User>();
     }
 
     public void addUser(User user) {

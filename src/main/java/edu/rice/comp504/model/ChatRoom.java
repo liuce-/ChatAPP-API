@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class ChatRoom {
     String name;
-    ArrayList<User> users;
+    HashSet<User> users;
     Restriction restriction;
 
     public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction) {
@@ -35,6 +35,7 @@ public class ChatRoom {
 
     /**
      * Add a user to this chat room (if qualified).
+     *
      * @param user add this user.
      * @return true if the user is qualified and added. False otherwise.
      */
@@ -47,4 +48,17 @@ public class ChatRoom {
 
     }
 
+    /**
+     * remove a user from a chat room
+     *
+     * @param user remove this user.
+     * @return true if the user is in the hashset and successfully remove it. False otherwise.
+     */
+    public boolean removeUser(User user) {
+        if (users.contains(user)) {
+            users.remove(user);
+            return true;
+        }
+        return false;
+    }
 }

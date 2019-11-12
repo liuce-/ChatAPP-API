@@ -2,6 +2,7 @@ package edu.rice.comp504.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -16,6 +17,7 @@ import static j2html.TagCreator.*;
  */
 public class ChatAppController {
     static Map<Session, User> userNameMap = new ConcurrentHashMap<>();
+    static Map<String, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
     static int nextUserId = 1;
     static Gson gson;
 
