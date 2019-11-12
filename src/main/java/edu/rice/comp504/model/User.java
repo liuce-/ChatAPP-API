@@ -7,22 +7,9 @@ public class User {
     private String username;
     private int age;
     private String school;
+    private String location;
     ArrayList<ChatRoom> chatRooms;
 
-    // TODO: do we need to keep track of individual chats?
-
-    public User(String username, int age, String school) {
-        this.username = username;
-        this.age = age;
-        this.school = school;
-        chatRooms = new ArrayList<ChatRoom>();
-    }
-
-    public User(String username) {
-        this.username = username;
-        this.age = 20;
-        this.school = "Rice University";
-    }
 
     public String getUsername() {
         return username;
@@ -48,4 +35,27 @@ public class User {
         this.school = school;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+
+    // TODO: do we need to keep track of individual chats?
+
+    public User(String username, int age, String school) {
+        this.username = username;
+        this.age = age;
+        this.school = school;
+        chatRooms = new ArrayList<ChatRoom>();
+    }
+
+    public User(String username) {
+        this.username = username;
+        this.age = 20;
+        this.school = "Rice University";
+    }
 }
