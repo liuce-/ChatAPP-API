@@ -16,13 +16,14 @@ import static j2html.TagCreator.*;
  * The chat app controller communicates with all the clients on the web socket.
  */
 public class ChatAppController {
-    static Map<Session, User> userNameMap = new ConcurrentHashMap<>();
-    static Map<String, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
-    static int nextUserId = 1;
-    static Gson gson;
+    public static Map<Session, User> userNameMap = new ConcurrentHashMap<>();
+    public static Map<String, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
+    public static int nextUserId = 1;
+    public static Gson gson;
 
     /**
      * Chat App entry point.
+     *
      * @param args The command line arguments
      */
     public static void main(String[] args) {
@@ -33,25 +34,26 @@ public class ChatAppController {
         init();
 
 
-        get("/chat", (req, res)->{
+        get("/chat", (req, res) -> {
             res.redirect("/chat.html");
             return null;
         });
 
-        get("/chatroom", (req,res)->{
+        get("/chatroom", (req, res) -> {
             res.redirect("/chatroom.html");
             return null;
         });
 
-        get("/home", (req,res)->{
+        get("/home", (req, res) -> {
             res.redirect("/home.html");
             return null;
         });
-       // System.out.println(web)
+        // System.out.println(web)
     }
 
     /**
      * Broadcast message to all users.
+     *
      * @param sender  The message sender.
      * @param message The message.
      */
@@ -68,6 +70,7 @@ public class ChatAppController {
 
     /**
      * Get the heroku assigned port number.
+     *
      * @return The heroku assigned port number
      */
     private static int getHerokuAssignedPort() {
