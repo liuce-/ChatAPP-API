@@ -40,9 +40,9 @@
 
         let loginData = {res: 'ok'};
         if(loginData.res === 'ok') {
-            window.location.hash = '#/home';
             // add websocket to the page
             addScript("./js/websocket.js");
+            window.location.hash = '#/home';
         }
     });
 
@@ -68,9 +68,8 @@
 
         let registerData = {res: 'ok'};
         if(registerData.res === 'ok') {
-            window.location.hash = '#/home';
-            // add websocket to the page
             addScript("./js/websocket.js");
+            window.location.hash = '#/home';
         }
     });
 })();

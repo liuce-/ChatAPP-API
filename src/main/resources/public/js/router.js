@@ -5,25 +5,31 @@
     let insertScript = null;
 
     const onHashChange = () => {
+        let src = "";
         switch (location.hash) {
             case '#/home':
                 curTemplate = template.home;
-                insertScript.src = './js/home.js';
+                src = './js/home.js';
                 break;
             case '#/room':
                 curTemplate = template.room;
-                insertScript.src = './js/room.js';
+                src = './js/room.js';
                 break;
             case '#/chat':
                 curTemplate = template.chat;
-                insertScript.src = './js/chat.js';
+                src = './js/chat.js';
                 break;
             default:
                 curTemplate = template.index;
-                insertScript.src = './js/index.js';
+                src = './js/index.js';
 
         }
         pageContainer.innerHTML = curTemplate.textContent;
+        // only create new script and append can be run immediately
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = src;
+        insertScript.appendChild(script);
     };
 
     const onPageLoad = () => {
