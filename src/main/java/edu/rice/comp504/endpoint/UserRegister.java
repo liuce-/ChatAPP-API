@@ -1,6 +1,6 @@
 package edu.rice.comp504.endpoint;
 
-public class UserRegisterLogin {
+public class UserRegister {
     private String userName;
     private int age;
     private String school;
