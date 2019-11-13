@@ -36,9 +36,7 @@ public class WebSocketController {
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
         String username = ChatAppController.userNameMap.get(user).getUsername();
-
-        // do not remove this session.
-//        ChatAppController.userNameMap.remove(user);
+        ChatAppController.userNameMap.remove(user);
     }
 
     /**
