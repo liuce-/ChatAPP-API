@@ -10,7 +10,7 @@
           createRoomBtn = document.querySelector("#create-room-btn"),
           profileDialog = document.querySelector("#profile-dialog"),
           createRoomDialog = document.querySelector("#create-room-dialog"),
-          logoutBtn = document.querySelector("#logout-btn");
+          logoutBtn = document.querySelector("[data-logout]");
     let userProfile = null;
 
     /*
@@ -23,8 +23,8 @@
     // send username when connection established
     socket.addEventListener('open', () => {
         let usernameMsg = {
-            type: 'username',
-            msg: username
+            type: 'login',
+            info: JSON.stringify({username: username, msg: username})
         };
         socket.send(JSON.stringify(usernameMsg));
     });
@@ -32,6 +32,7 @@
     // socket give the user profile info
     socket.addEventListener('message', (ev) => {
         userProfile = JSON.parse(ev.data);
+        // todo: render profile
     });
 
     // get joined room data

@@ -110,7 +110,7 @@
                 <div class="home-button-wrapper">
                     <span class="btn" id="profile-btn">Your Profile</span>
                     <span class="btn" id="create-room-btn">Create room</span>
-                    <span class="btn" id="logout-btn">Logout</span>
+                    <span class="btn" data-logout="logout">Logout</span>
                     <p><i class="own-icon">*</i> means you own this room</p>
                 </div>
             </div>
@@ -221,9 +221,9 @@
 
                 <!-- option butons -->
                 <div class="home-button-wrapper">
-                    <span class="btn">Home page</span>
-                    <span class="btn">Leave this room</span>
-                    <span class="btn">Logout</span>
+                    <a class="btn" href="#/home">Home page</a>
+                    <span class="btn" id="leave-btn">Leave this room</span>
+                    <span class="btn" data-logout="logout">Logout</span>
                     <span class="btn">Announcement</span>
                     <span class="btn">Group Chat</span>
                     <p><i class="own-icon">*</i> means you own this room</p>
