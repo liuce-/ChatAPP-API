@@ -24,9 +24,9 @@ public class Restriction {
     /**
      * constructor. If any of these restrictions is null, that means no restriction imposed on such area.
      *
-     * @param ageRestriction
-     * @param locRestriction
-     * @param schoolRestriction
+     * @param ageRestriction age restriction, [x, y], both inclusive
+     * @param locRestriction only locations in this hashset are allowed.
+     * @param schoolRestriction only schools in this hashset are allowed.
      */
     public Restriction(Point ageRestriction, HashSet<String> locRestriction, HashSet<String> schoolRestriction) {
         this.ageRestriction = ageRestriction;

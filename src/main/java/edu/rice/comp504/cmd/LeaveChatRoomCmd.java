@@ -6,7 +6,7 @@ package edu.rice.comp504.cmd;
  */
 public class LeaveChatRoomCmd extends AbstractCmd {
     @Override
-    public void execute(String body) {
-
+    public String execute(String body) {
+        return null;
     }
 }

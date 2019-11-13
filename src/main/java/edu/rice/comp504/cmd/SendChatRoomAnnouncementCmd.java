@@ -5,7 +5,7 @@ package edu.rice.comp504.cmd;
  */
 public class SendChatRoomAnnouncementCmd extends AbstractCmd {
     @Override
-    public void execute(String body) {
-
+    public String execute(String body) {
+        return null;
     }
 }

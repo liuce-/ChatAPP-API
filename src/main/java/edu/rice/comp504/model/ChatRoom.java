@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ChatRoom {
+    private static int nextAvailableID = 0;
+    private int id;
     String name;
     HashSet<User> users;
     Restriction restriction;
@@ -12,6 +14,7 @@ public class ChatRoom {
     public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction) {
         this.name = name;
         this.restriction = new Restriction(ageRestriction, locRestrictions, schoolRestriction);
+        this.id = nextAvailableID++;
     }
 
     private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction) {
@@ -25,13 +28,20 @@ public class ChatRoom {
 
         restriction.setSchoolRestriction(schoolRestrictions);
         restriction.setLocRestriction(locRestrictions);
+
+        this.id = nextAvailableID++;
+
     }
 
     private ChatRoom(String name) {
         this.name = name;
         this.restriction = new Restriction(null, null, null);
+        this.id = nextAvailableID++;
     }
 
+    public int getId() {
+        return id;
+    }
 
     /**
      * Add a user to this chat room (if qualified).
