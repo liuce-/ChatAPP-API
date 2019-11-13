@@ -6,16 +6,16 @@
 
     const onHashChange = () => {
         let src = "";
-        switch (location.hash) {
-            case '#/home':
+        switch (true) {
+            case /#\/home/.test(location.hash):
                 curTemplate = template.home;
                 src = './js/home.js';
                 break;
-            case '#/room':
+            case /#\/room\/\d+/.test(location.hash):
                 curTemplate = template.room;
                 src = './js/room.js';
                 break;
-            case '#/chat':
+            case /#\/chat/.test(location.hash):
                 curTemplate = template.chat;
                 src = './js/chat.js';
                 break;
