@@ -26,6 +26,7 @@
         }
         pageContainer.innerHTML = curTemplate.textContent;
         // only create new script and append can be run immediately
+        insertScript.innerHTML = "";
         let script = document.createElement("script");
         script.type = "text/javascript";
         script.src = src;

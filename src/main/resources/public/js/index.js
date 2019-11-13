@@ -42,6 +42,8 @@
         if(loginData.res === 'ok') {
             // add websocket to the page
             addScript("./js/websocket.js");
+            // global variable for username used in all templates
+            window.username = username.trim();
             window.location.hash = '#/home';
         }
     });
@@ -69,6 +71,7 @@
         let registerData = {res: 'ok'};
         if(registerData.res === 'ok') {
             addScript("./js/websocket.js");
+            window.username = username.trim();
             window.location.hash = '#/home';
         }
     });
