@@ -34,20 +34,20 @@ public class ChatAppController {
         init();
 
 
-        get("/chat", (req, res) -> {
-            res.redirect("/chat.html");
-            return null;
-        });
-
-        get("/chatroom", (req, res) -> {
-            res.redirect("/chatroom.html");
-            return null;
-        });
-
-        get("/home", (req, res) -> {
-            res.redirect("/home.html");
-            return null;
-        });
+//        get("/chat", (req, res) -> {
+//            res.redirect("/chat.html");
+//            return null;
+//        });
+//
+//        get("/chatroom", (req, res) -> {
+//            res.redirect("/chatroom.html");
+//            return null;
+//        });
+//
+//        get("/home", (req, res) -> {
+//            res.redirect("/home.html");
+//            return null;
+//        });
         // System.out.println(web)
     }
 
