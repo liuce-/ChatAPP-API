@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Please Login</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/router.js"></script>
+    <script type="text/javascript" id="insert-script"></script>
 </head>
 <body>
     <div id="page-container"></div>
@@ -21,45 +22,45 @@
         <!-- register or login -->
         <div class="index-content-wrapper">
             <!-- login -->
-            <div class="index-login-form index-form">
+            <div class="index-login-form index-form" id="login-wrapper">
                 <p class="title">Login</p>
-                <form>
+                <form id="login-form">
                     <div class="item">
                         <span class="tit">Username</span>
-                        <input type="text" placeholder="username" />
+                        <input type="text" name="username" placeholder="username" />
                         <span class="err-tip hidden">username required</span>
                     </div>
 
                     <div class="btn-wrapper">
-                        <p class="login-tip-error hidden">username error!</p>
-                        <button>login</button>
+                        <p class="login-tip-error hidden" id="login-error">invalid user!</p>
+                        <button id="login-btn">login</button>
                     </div>
-                    <p class="sign-tip">If you do not have an account, please <span>Sign in</span> here.</p>
+                    <p class="sign-tip">If you do not have an account, please <span data-form="login">Sign in</span> here.</p>
                 </form>
             </div>
 
             <!-- register -->
-            <div class="index-register-form index-form hidden">
+            <div class="index-register-form index-form hidden" id="register-wrapper">
                 <p class="title">Register</p>
-                <form>
+                <form id="register-form">
                     <div class="item">
-                        <input type="text" placeholder="Username" />
+                        <input type="text" name="username" placeholder="Username" />
                     </div>
                     <div class="item">
-                        <input type="text" placeholder="Age" />
+                        <input type="text" name="age" placeholder="Age" />
                     </div>
                     <div class="item">
-                        <input type="text" placeholder="Location" />
+                        <input type="text" name="location" placeholder="Location" />
                     </div>
                     <div class="item">
-                        <input type="text" placeholder="School" />
+                        <input type="text" name="school" placeholder="School" />
                     </div>
 
                     <div class="btn-wrapper">
                         <p class="login-tip-error hidden">user already exist!</p>
-                        <button>register</button>
+                        <button id="register-btn">register</button>
                     </div>
-                    <p class="sign-tip">If you already have an account, please <span>Login in</span> here.</p>
+                    <p class="sign-tip">If you already have an account, please <span data-form="register">Login in</span> here.</p>
                 </form>
             </div>
         </div>

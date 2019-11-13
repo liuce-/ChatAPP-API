@@ -1,35 +1,76 @@
 (function() {
-    let curTemplate = null;
-    let template = null;
-    let pageContainer = null;
+    const loginWrapper = document.querySelector('#login-wrapper'),
+          registerWrapper = document.querySelector('#register-wrapper'),
+          loginBtn = document.querySelector('#login-btn'),
+          registerBtn = document.querySelector('#register-form'),
+          loginForm = document.querySelector('#login-form'),
+          registerForm = document.querySelector('#register-form');
 
-    const onHashChange = () => {
-        switch (location.hash) {
-            case '#/home':
-                curTemplate = template.home;
-                break;
-            case '#/room':
-                curTemplate = template.room;
-                break;
-            case '#/chat':
-                curTemplate = template.chat;
-                break;
-            default:
-                curTemplate = template.index;
-        }
-        pageContainer.innerHTML = curTemplate.textContent;
+    const addScript = (src) => {
+        let newScript = document.createElement('script');
+        newScript.setAttribute("type","text/javascript");
+        newScript.setAttribute("src", src);
+        document.getElementsByTagName("head")[0].appendChild(newScript);
     };
 
-    const onPageLoad = () => {
-        pageContainer = document.querySelector('#page-container');
-        template = {
-            index: document.querySelector('#index-template'),
-            home: document.querySelector('#home-template'),
-            room: document.querySelector('#room-template'),
-            chat: document.querySelector('#chat-template')
+    // toggle login and register
+    Array.from(document.querySelectorAll('[data-form]')).forEach(item => {
+        item.addEventListener('click', (ev) => {
+            if(ev.target.dataset.form === 'login') {
+                loginWrapper.classList.add('hidden');
+                registerWrapper.classList.remove('hidden');
+            } else if(ev.target.dataset.form === 'register') {
+                loginWrapper.classList.remove('hidden');
+                registerWrapper.classList.add('hidden');
+            }
+        })
+    });
+
+    // click login
+    loginBtn.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+        let username = loginForm.elements.username.value;
+        if(!username) return;
+
+        let params = {
+            method: 'post',
+            body: JSON.stringify({username: username.trim()})
         };
-        onHashChange();
-    };
+        //let loginData = await fetch('/login', params);
 
-    window.addEventListener('DOMContentLoaded', onPageLoad);
+        let loginData = {res: 'ok'};
+        if(loginData.res === 'ok') {
+            window.location.hash = '#/home';
+            // add websocket to the page
+            addScript("./js/websocket.js");
+        }
+    });
+
+    // click register
+    registerBtn.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+        let username = registerForm.elements.username.value;
+        let age = registerForm.elements.age.value;
+        let location = registerForm.elements.location.value;
+        let school = registerForm.elements.school.value;
+        if(!username || !age || !location || !school) return;
+
+        let params = {
+            method: 'post',
+            body: JSON.stringify({
+                username: username.trim(),
+                age: age,
+                location: location,
+                school: school
+            })
+        };
+        //let registerData = await fetch('/register', params);
+
+        let registerData = {res: 'ok'};
+        if(registerData.res === 'ok') {
+            window.location.hash = '#/home';
+            // add websocket to the page
+            addScript("./js/websocket.js");
+        }
+    });
 })();
