@@ -1,6 +1,4 @@
-'use strict';
+// global variable for webSocket
+window.socket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 
-const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
-console.log(webSocket);
-
-webSocket.onclose = () => alert("Websocket connection closed");
+socket.onclose = () => alert("Websocket connection closed");

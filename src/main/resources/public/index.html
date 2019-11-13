@@ -7,7 +7,6 @@
     <title>Please Login</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="js/router.js"></script>
-    <script type="text/javascript" id="insert-script"></script>
 </head>
 <body>
     <div id="page-container"></div>
@@ -109,9 +108,9 @@
 
                 <!-- option butons -->
                 <div class="home-button-wrapper">
-                    <span class="btn">Your Profile</span>
-                    <span class="btn">Create room</span>
-                    <span class="btn">Logout</span>
+                    <span class="btn" id="profile-btn">Your Profile</span>
+                    <span class="btn" id="create-room-btn">Create room</span>
+                    <span class="btn" id="logout-btn">Logout</span>
                     <p><i class="own-icon">*</i> means you own this room</p>
                 </div>
             </div>
@@ -148,7 +147,7 @@
         </div>
 
         <!-- create room dialogue -->
-        <div id="create-dialog" class="hidden">
+        <div id="create-room-dialog" class="hidden">
             <div class="cover"></div>
             <div class="box home-create-box">
                 <h4>Create a new room</h4>
@@ -302,5 +301,7 @@
             </div>
         </div>
     </script>
+
+    <div id="insert-script"></div>
 </body>
 </html>
