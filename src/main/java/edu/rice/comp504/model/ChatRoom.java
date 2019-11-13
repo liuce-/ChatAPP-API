@@ -36,7 +36,6 @@ public class ChatRoom {
     private ChatRoom(String name) {
         this.name = name;
         this.restriction = new Restriction(null, null, null);
-
         this.id = nextAvailableID++;
     }
 

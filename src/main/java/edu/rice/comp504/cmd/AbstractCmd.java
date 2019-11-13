@@ -5,5 +5,5 @@ import com.google.gson.Gson;
 public abstract class AbstractCmd {
     protected Gson gson = new Gson();
 
-    public abstract void execute(String body);
+    public abstract String execute(String body);
 }

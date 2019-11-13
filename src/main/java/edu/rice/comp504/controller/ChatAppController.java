@@ -2,6 +2,9 @@ package edu.rice.comp504.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import edu.rice.comp504.cmd.AbstractCmd;
+import edu.rice.comp504.cmd.CmdFactory;
+import edu.rice.comp504.cmd.RegisterCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import org.eclipse.jetty.websocket.api.Session;
@@ -16,8 +19,9 @@ import static j2html.TagCreator.*;
  * The chat app controller communicates with all the clients on the web socket.
  */
 public class ChatAppController {
-    public static Map<Session, User> userNameMap = new ConcurrentHashMap<>();
+    public static Map<String, User> allUsers = new ConcurrentHashMap<>();
     public static Map<String, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
+    public static Map<Session, User> userNameMap = new ConcurrentHashMap<>();
     public static int nextUserId = 1;
     public static Gson gson;
 
@@ -32,6 +36,11 @@ public class ChatAppController {
         gson = new Gson();
         webSocket("/chatapp", WebSocketController.class);
         init();
+
+        post("/register", (request, response) -> {
+            AbstractCmd registerCmd = CmdFactory.getCmd(RegisterCmd.class);
+            return registerCmd.execute(request.body());
+        });
     }
 
     /**
