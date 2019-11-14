@@ -24,26 +24,21 @@
     socket.addEventListener('open', () => {
         let usernameMsg = {
             type: 'login',
-            info: JSON.stringify({username: username, msg: username})
+            info: JSON.stringify({username}),
         };
         socket.send(JSON.stringify(usernameMsg));
     });
 
-    // socket give the user profile info
-    socket.addEventListener('message', (ev) => {
-        userProfile = JSON.parse(ev.data);
-        // todo: render profile
-    });
 
-    // get joined room data
-    let joinedRoomUrl = `/joined_rooms/${username}`;
-    let joinedRoomData = await fetch(joinedRoomUrl);
-    // todo: render data
+    /*// get joined room data
+      let joinedRoomUrl = `/joined_rooms/${username}`;
+      let joinedRoomData = await fetch(joinedRoomUrl);
+      // todo: render data
 
-    // get could join room data
-    let possibleRoomUrl = `/possible_rooms/${username}`;
-    let possibleRoomData = await fetch(possibleRoomUrl);
-    // todo: render data
+      // get could join room data
+      let possibleRoomUrl = `/possible_rooms/${username}`;
+      let possibleRoomData = await fetch(possibleRoomUrl);
+    // todo: render data*/
 
 
     // click logout button
