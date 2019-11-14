@@ -10,6 +10,22 @@ socket.addEventListener('message', (ev) => {
     let type = data.type;
 
     if (type === 'login') {
-      renderProfile(data.info);
+      let profile = data.info.profile;
+      renderProfile({
+        username: data.info.username,
+        age: profile.age,
+        location: profile.location,
+        school: profile.school,
+      });
+    } else if (type === 'joined_rooms') {
+        renderJoinedRooms(data.info);
+    } else if (type === 'possible_rooms') {
+        renderPossibleRooms(data.info);
+    } else if (type === 'announcement') {
+        // TODO
+    } else if (type === 'message') {
+        // TODO
+    } else {
+        // TODO
     }
 });
