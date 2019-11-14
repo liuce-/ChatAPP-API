@@ -1,24 +1,26 @@
 package edu.rice.comp504.model;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ChatRoom {
     private static int nextAvailableID = 0;
     private int id;
     String name;
+    User owner;
     HashSet<User> users;
     Restriction restriction;
 
-    public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction) {
+    public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction, User owner) {
         this.name = name;
+        this.owner = owner;
         this.restriction = new Restriction(ageRestriction, locRestrictions, schoolRestriction);
         this.id = nextAvailableID++;
     }
 
-    private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction) {
+    private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction, User owner) {
         this.name = name;
+        this.owner = owner;
         this.restriction = new Restriction(ageRestriction, null, null);
         HashSet<String> locRestrictions = new HashSet<String>();
         locRestrictions.add(locRestriction);
@@ -30,11 +32,11 @@ public class ChatRoom {
         restriction.setLocRestriction(locRestrictions);
 
         this.id = nextAvailableID++;
-
     }
 
-    private ChatRoom(String name) {
+    private ChatRoom(String name, User owner) {
         this.name = name;
+        this.owner = owner;
         this.restriction = new Restriction(null, null, null);
         this.id = nextAvailableID++;
     }

@@ -19,14 +19,16 @@ public class WebSocketController {
      */
     @OnWebSocketConnect
     public void onConnect(Session userSession) {
-        //user name is currently created automatically based on number
-        // instead we will have user enter username to check if profile exists
-        // if username in map - show existing chat rooms
-        //otherwise create new user
-        String username = "User" + ChatAppController.nextUserId++;
-        User user = new User(username);
-        ChatAppController.userNameMap.put(userSession, user);
-        System.out.println(username);
+//        //user name is currently created automatically based on number
+//        // instead we will have user enter username to check if profile exists
+//        // if username in map - show existing chat rooms
+//        //otherwise create new user
+//        String username = "User" + ChatAppController.nextUserId++;
+//        User user = new User(username);
+//        ChatAppController.userNameMap.put(userSession, user);
+//        System.out.println(username);
+
+        // do nothing here.
     }
 
     /**
