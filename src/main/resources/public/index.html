@@ -15,31 +15,31 @@
     <script type="text/html" id="index-template">
         <h1 class="index-title">Welcome to Chatapp</h1>
         <div class="index-intro">
-            <p>You can have a lot of fun here, please register or login first.</p>
+            <p>You can have a lot of fun here, please register first.</p>
         </div>
       
         <!-- register or login -->
         <div class="index-content-wrapper">
             <!-- login -->
-            <div class="index-login-form index-form" id="login-wrapper">
-                <p class="title">Login</p>
-                <form id="login-form">
-                    <div class="item">
-                        <span class="tit">Username</span>
-                        <input type="text" name="username" placeholder="username" />
-                        <span class="err-tip hidden">username required</span>
-                    </div>
+<!--            <div class="index-login-form index-form" id="login-wrapper">-->
+<!--                <p class="title">Login</p>-->
+<!--                <form id="login-form">-->
+<!--                    <div class="item">-->
+<!--                        <span class="tit">Username</span>-->
+<!--                        <input type="text" name="username" placeholder="username" />-->
+<!--                        <span class="err-tip hidden">username required</span>-->
+<!--                    </div>-->
 
-                    <div class="btn-wrapper">
-                        <p class="login-tip-error hidden" id="login-error">invalid user!</p>
-                        <button id="login-btn">login</button>
-                    </div>
-                    <p class="sign-tip">If you do not have an account, please <span data-form="login">Sign in</span> here.</p>
-                </form>
-            </div>
+<!--                    <div class="btn-wrapper">-->
+<!--                        <p class="login-tip-error hidden" id="login-error">invalid user!</p>-->
+<!--                        <button id="login-btn">login</button>-->
+<!--                    </div>-->
+<!--                    <p class="sign-tip">If you do not have an account, please <span data-form="login">Sign in</span> here.</p>-->
+<!--                </form>-->
+<!--            </div>-->
 
             <!-- register -->
-            <div class="index-register-form index-form hidden" id="register-wrapper">
+            <div class="index-register-form index-form" id="register-wrapper">
                 <p class="title">Register</p>
                 <form id="register-form">
                     <div class="item">
@@ -56,10 +56,9 @@
                     </div>
 
                     <div class="btn-wrapper">
-                        <p class="login-tip-error hidden">user already exist!</p>
+                        <p class="login-tip-error hidden">username already exist!</p>
                         <button id="register-btn">register</button>
                     </div>
-                    <p class="sign-tip">If you already have an account, please <span data-form="register">Login in</span> here.</p>
                 </form>
             </div>
         </div>

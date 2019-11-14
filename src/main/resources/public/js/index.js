@@ -14,39 +14,39 @@
     };
 
     // toggle login and register
-    Array.from(document.querySelectorAll('[data-form]')).forEach(item => {
-        item.addEventListener('click', (ev) => {
-            if(ev.target.dataset.form === 'login') {
-                loginWrapper.classList.add('hidden');
-                registerWrapper.classList.remove('hidden');
-            } else if(ev.target.dataset.form === 'register') {
-                loginWrapper.classList.remove('hidden');
-                registerWrapper.classList.add('hidden');
-            }
-        })
-    });
+    // Array.from(document.querySelectorAll('[data-form]')).forEach(item => {
+    //     item.addEventListener('click', (ev) => {
+    //         if(ev.target.dataset.form === 'login') {
+    //             loginWrapper.classList.add('hidden');
+    //             registerWrapper.classList.remove('hidden');
+    //         } else if(ev.target.dataset.form === 'register') {
+    //             loginWrapper.classList.remove('hidden');
+    //             registerWrapper.classList.add('hidden');
+    //         }
+    //     })
+    // });
 
     // click login
-    loginBtn.addEventListener('click', async (ev) => {
-        ev.preventDefault();
-        let username = loginForm.elements.username.value;
-        if(!username) return;
-
-        let params = {
-            method: 'post',
-            body: JSON.stringify({username: username.trim()})
-        };
-        //let loginData = await fetch('/login', params);
-
-        let loginData = {res: 'ok'};
-        if(loginData.res === 'ok') {
-            // add websocket to the page
-            addScript("./js/websocket.js");
-            // global variable for username used in all templates
-            window.username = username.trim();
-            window.location.hash = '#/home';
-        }
-    });
+    // loginBtn.addEventListener('click', async (ev) => {
+    //     ev.preventDefault();
+    //     let username = loginForm.elements.username.value;
+    //     if(!username) return;
+    //
+    //     let params = {
+    //         method: 'post',
+    //         body: JSON.stringify({username: username.trim()})
+    //     };
+    //     //let loginData = await fetch('/login', params);
+    //
+    //     let loginData = {res: 'ok'};
+    //     if(loginData.res === 'ok') {
+    //         // add websocket to the page
+    //         addScript("./js/websocket.js");
+    //         // global variable for username used in all templates
+    //         window.username = username.trim();
+    //         window.location.hash = '#/home';
+    //     }
+    // });
 
     // click register
     registerBtn.addEventListener('click', async (ev) => {
