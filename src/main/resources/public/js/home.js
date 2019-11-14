@@ -10,8 +10,8 @@
           createRoomBtn = document.querySelector("#create-room-btn"),
           profileDialog = document.querySelector("#profile-dialog"),
           createRoomDialog = document.querySelector("#create-room-dialog"),
-          logoutBtn = document.querySelector("[data-logout]");
-    let userProfile = null;
+          logoutBtn = document.querySelector("[data-logout]"),
+          profileInfo = document.querySelectorAll("[data-profile]");
 
     /*
         socket status:
@@ -29,17 +29,25 @@
         socket.send(JSON.stringify(usernameMsg));
     });
 
-
-    /*// get joined room data
-      let joinedRoomUrl = `/joined_rooms/${username}`;
-      let joinedRoomData = await fetch(joinedRoomUrl);
-      // todo: render data
-
-      // get could join room data
-      let possibleRoomUrl = `/possible_rooms/${username}`;
-      let possibleRoomData = await fetch(possibleRoomUrl);
-    // todo: render data*/
-
+    // profile info in the dialogue
+    const renderProfile = (profile) => {
+        Array.from(profileInfo).forEach(item => {
+            switch (item.dataset.profile) {
+                case "username":
+                    item.innerHTML = profile['username'];
+                    break;
+                case "age":
+                    item.innerHTML = profile['age'];
+                    break;
+                case "location":
+                    item.innerHTML = profile['location'];
+                    break;
+                case "school":
+                    item.innerHTML = profile['school'];
+                    break;
+            }
+        });
+    };
 
     // click logout button
     logoutBtn.addEventListener('click', () => {
