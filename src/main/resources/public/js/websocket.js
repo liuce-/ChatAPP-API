@@ -11,12 +11,19 @@ socket.addEventListener('message', (ev) => {
 
     if (type === 'login') {
       let profile = data.info.profile;
-      renderProfile({
-        username: data.info.username,
-        age: profile.age,
-        location: profile.location,
-        school: profile.school,
-      });
+      let d = {
+        username: 'data.info.username',
+        age: 'profile.age',
+        location: 'profile.location',
+        school: 'profile.school',
+      };
+      renderProfile(d);
+      // renderProfile({
+      //   username: data.info.username,
+      //   age: profile.age,
+      //   location: profile.location,
+      //   school: profile.school,
+      // });
     } else if (type === 'joined_rooms') {
         renderJoinedRooms(data.info);
     } else if (type === 'possible_rooms') {
