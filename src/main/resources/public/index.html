@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Please Login</title>
+    <title>Please come to chat</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="js/router.js"></script>
 </head>
@@ -151,7 +151,8 @@
             <div class="box home-create-box">
                 <h4>Create a new room</h4>
                 <div class="dialog-content">
-                    <form>
+
+                    <form id="registration">
                         <div class="item">
                             <span class="tit">Room name:</span>
                             <input type="text" placeholder="Room name" />
@@ -159,16 +160,20 @@
                         <p class="restriction">restrictions</p>
                         <div class="item">
                             <span class="tit">Age</span>
+                        	<input type="text" placeholder="17" id='input-age' pattern='^\d{2}$' title="please use two digits exactly" required>
                         </div>
                         <div class="item">
                             <span class="tit">Location</span>
+                        	<input type="text" id="input-location" placeholder="North and South America" required>
                         </div>
                         <div class="item">
                             <span class="tit">School</span>
+                        	<input type="text" id="input-school" placeholder="Rice" required>
                         </div>
                     </form>
+
                 </div>
-                <div class="btn-wrapper"><span class="btn" data-close="close">Create</span></div>
+                <div class="btn-wrapper"><span id="create-room-action" class="btn" data-close="close">Create</span></div>
                 <span class="close" data-close="close">X</span>
             </div>
         </div>
