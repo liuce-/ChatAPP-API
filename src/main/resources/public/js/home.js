@@ -12,7 +12,9 @@
           profileDialog = document.querySelector("#profile-dialog"),
           createRoomDialog = document.querySelector("#create-room-dialog"),
           logoutBtn = document.querySelector("[data-logout]"),
-          profileInfo = document.querySelectorAll("[data-profile]");
+          profileInfo = document.querySelectorAll("[data-profile]"),
+          joined_rooms = document.querySelector("#joined_rooms"),
+          possible_rooms = document.querySelector("#possible_rooms");
 
     /*
         socket status:
@@ -50,6 +52,23 @@
         });
     };
 
+    // show room list
+    const renderRoomlist = (rooms, type) => {
+        let tpl;
+        if(type === "joined") {
+            tpl = rooms.map(item => {
+                return `<li><span class="name">${item.name}${item.isOwned ? '<i class="own-icon">*</i>'
+                : ''}</span><a class="join-btn" href="#/room/${item.id}">Enter</a></li>`;
+            });
+            joined_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
+        } else if(type === "possible") {
+            tpl = rooms.map(item => {
+                return `<li><span class="name">${item.name}</span><a class="join-btn" href="#/room/${item.id}">Join</a></li>`;
+            });
+            possible_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
+        }
+    };
+
     // fake data
     let d = {
         username: 'data.info.username',
@@ -59,7 +78,7 @@
     };
     renderProfile(d);
 
-    // socket give the user profile info
+    // socket give the user profile info and room list
     socket.addEventListener('message', (ev) => {
         let data = JSON.parse(ev.data);
         let type = data.type;
@@ -72,9 +91,13 @@
                 location: profile.location,
                 school: profile.school,
             });
+        } else if(type === 'joined_rooms') {
+            renderRoomlist(data.info.roomlist, "joined");
+        } else if(type === 'possible_rooms') {
+            renderRoomlist(data.info.roomlist, "possible");
         }
     });
-    
+
     // click logout button
     logoutBtn.addEventListener('click', () => {
         socket.close();
@@ -111,7 +134,7 @@
                 location: 'North and South America',
                 school: 'Rice',
             };
-            const resp = await fetch('/room/create', {
+            const resp = await fetch('/create_room', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

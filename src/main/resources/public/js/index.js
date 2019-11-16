@@ -71,8 +71,9 @@
         let registerData = {res: 'ok'};
         if(registerData.res === 'ok') {
             window.username = username.trim();
-            window.location.hash = '#/home';
+            // this should before location changes
             addScript("./js/websocket.js");
+            window.location.hash = '#/home';
         }
     });
 })();
