@@ -70,9 +70,9 @@
 
         let registerData = {res: 'ok'};
         if(registerData.res === 'ok') {
-            addScript("./js/websocket.js");
             window.username = username.trim();
             window.location.hash = '#/home';
+            addScript("./js/websocket.js");
         }
     });
 })();

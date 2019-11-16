@@ -49,6 +49,31 @@
         });
     };
 
+    // fake data
+    let d = {
+        username: 'data.info.username',
+        age: 'profile.age',
+        location: 'profile.location',
+        school: 'profile.school',
+    };
+    renderProfile(d);
+
+    // socket give the user profile info
+    socket.addEventListener('message', (ev) => {
+        let data = JSON.parse(ev.data);
+        let type = data.type;
+
+        if (type === 'login') {
+            let profile = data.info.profile;
+            renderProfile({
+                username: data.info.username,
+                age: profile.age,
+                location: profile.location,
+                school: profile.school,
+            });
+        }
+    });
+
     // click logout button
     logoutBtn.addEventListener('click', () => {
         socket.close();
