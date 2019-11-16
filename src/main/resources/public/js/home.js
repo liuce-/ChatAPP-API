@@ -8,6 +8,7 @@
 
     const profileBtn = document.querySelector("#profile-btn"),
           createRoomBtn = document.querySelector("#create-room-btn"),
+          createRoomActionBtn = document.querySelector("#create-room-action"),
           profileDialog = document.querySelector("#profile-dialog"),
           createRoomDialog = document.querySelector("#create-room-dialog"),
           logoutBtn = document.querySelector("[data-logout]"),
@@ -73,7 +74,7 @@
             });
         }
     });
-
+    
     // click logout button
     logoutBtn.addEventListener('click', () => {
         socket.close();
@@ -98,5 +99,28 @@
             createRoomDialog.classList.add('hidden');
             profileDialog.classList.add('hidden');
         })
+    });
+
+    // click create-room-action button in create-room-dialog
+    createRoomActionBtn.addEventListener('click', async () => {
+        // TODO form format (e.g. checkbox etc.)
+        try {
+            let data = {
+                roomName: 'templateRoom',
+                age: 12,
+                location: 'North and South America',
+                school: 'Rice',
+            };
+            const resp = await fetch('/room/create', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data),
+            });
+            // TODO check data (e.g. OK)
+        } catch (error) {
+            console.error(error);
+        }
     });
 })();
