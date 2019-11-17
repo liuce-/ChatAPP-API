@@ -1,4 +1,4 @@
-package edu.rice.comp504.payload;
+package edu.rice.comp504.payload.response;
 
 public class UserRegisterResponse {
     private String username;

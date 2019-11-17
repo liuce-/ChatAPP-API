@@ -1,14 +1,29 @@
 package edu.rice.comp504.model;
 
+import edu.rice.comp504.cmd.AbstractCmd;
+import org.eclipse.jetty.websocket.api.Session;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class User {
+public class User implements PropertyChangeListener {
 
     private String username;
     private int age;
     private String school;
     private String location;
+
+    private Session session;
     ArrayList<ChatRoom> chatRooms;
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
 
     public String getUsername() {
@@ -58,5 +73,17 @@ public class User {
         this.username = username;
         this.age = 20;
         this.school = "Rice University";
+    }
+
+    /**
+     * This method gets called when a bound property is changed.
+     *
+     * @param evt A PropertyChangeEvent object describing the event source
+     *            and the property that has changed.
+     */
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        AbstractCmd cmd = (AbstractCmd) evt.getNewValue();
+        cmd.execute(this);
     }
 }

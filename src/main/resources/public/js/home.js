@@ -1,7 +1,7 @@
-(async function() {
+(function () {
     // websocket should already exists here...
     // if not, user refresh the page (connection closed), go back to login page
-    if(!window.socket) {
+    if (!window.socket) {
         window.location.href = '/';
         return;
     }
@@ -61,13 +61,13 @@
     // show room list
     const renderRoomlist = (rooms, type) => {
         let tpl;
-        if(type === "joined") {
+        if (type === "joined") {
             tpl = rooms.map(item => {
                 return `<li><span class="name">${item.name}${item.isOwned ? '<i class="own-icon">*</i>'
-                : ''}</span><a class="join-btn" href="#/room${item.id}${item.isOwned ? "?owner" : ''}">Enter</a></li>`;
+                    : ''}</span><a class="join-btn" href="#/room${item.id}${item.isOwned ? "?owner" : ''}">Enter</a></li>`;
             });
             joined_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
-        } else if(type === "possible") {
+        } else if (type === "possible") {
             tpl = rooms.map(item => {
                 return `<li><span class="name">${item.name}</span><a class="join-btn" href="#/room${item.id}">Join</a></li>`;
             });
@@ -75,7 +75,28 @@
         }
     };
 
-    // fake data
+    // get two room lists
+    const getJoinedRooms = async () => {
+        try {
+            let joinedRoomData = await fetch(`/joined_rooms/${username}`);
+            renderRoomlist(joinedRoomData.roomlist, "joined");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getJoinedRooms();
+
+    const getPossibleRooms = async () => {
+        try {
+            let possibleRoomData = await fetch(`/possible_rooms/${username}`);
+            renderRoomlist(possibleRoomData.roomlist, "possible");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getPossibleRooms();
+
+    // fake profile data
     let d = {
         username: 'data.info.username',
         age: 'profile.age',
@@ -97,10 +118,10 @@
                 location: profile.location,
                 school: profile.school,
             });
-        } else if(type === 'joined_rooms') {
-            renderRoomlist(data.info.roomlist, "joined");
-        } else if(type === 'possible_rooms') {
-            renderRoomlist(data.info.roomlist, "possible");
+        } else if (type === 'joined_rooms' && data.info.msg) {
+            getJoinedRooms();
+        } else if (type === 'possible_rooms' && data.info.msg) {
+            getPossibleRooms();
         }
     });
 

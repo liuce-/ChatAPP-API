@@ -27,6 +27,4 @@ public class Message {
         this.info = info;
     }
 
-
-
 }

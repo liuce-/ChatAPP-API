@@ -73,7 +73,8 @@
                 <div class="home-rooms-wrapper">
                     <p class="home-joined-title">Your rooms</p>
                     <ul class="home-list" id="joined_rooms">
-                        <a class="join-btn" href="#/room/1?owner">test into room</a>
+                        <a class="join-btn" href="#/room/1?owner">test into room owner</a>
+                        <a class="join-btn" href="#/room/2">test into room</a>
 <!--                        <li>-->
 <!--                            <span class="name">aaaa</span>-->
 <!--                            <a class="join-btn" href="#/room/1">Enter</a>-->
@@ -192,11 +193,7 @@
             <div class="room-announce-wrapper">
                 <div class="room-announce-content">
                     <p class="room-announce-title">Announements</p>
-                    <ul class="room-announce-list" id="announements">
-                        <li>hello hello ello hellello hell hello hello</li>
-                        <li>111111111</li>
-                        <li>hello hello hello hello 121212</li>
-                    </ul>
+                    <ul class="room-announce-list" id="announements"></ul>
                 </div>
             </div>
 
@@ -207,15 +204,15 @@
                     <ul class="room-list" id="people-list">
                         <li>
                             <span class="name">aaaa</span>
-                            <a class="chat-btn btn" href="#/chat?user=aaa">Chat</a>
-                            <span class="kick-btn btn">Kick</span>
+                            <span class="chat-btn btn" data-chat="aaa">Chat</span>
+                            <span class="kick-btn btn" data-kick="aaa">Kick</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- option butons -->
                 <div class="home-button-wrapper">
-                    <a class="btn" id="leave-temp-btn">Home page</a>
+                    <a class="btn" href="#/home">Home page</a>
                     <span class="btn" id="leave-perm-btn">Leave this room</span>
                     <span class="btn" data-logout="logout">Logout</span>
                     <span class="btn hidden" id="announce-btn">Announcement</span>
@@ -235,67 +232,43 @@
                 <div class="chat-info-bar">
                     <div class="left-inner">
                         <div class="online-icon"></div>
-                        <h3>xxxx</h3>
+                        <h3 id="chat-user"></h3>
                     </div>
                     <div class="right-inner">
-                        <span class="close-icon">x</span>
+                        <span class="close-icon" id="close-btn">x</span>
                     </div>
                 </div>
 
                 <!-- messages -->
                 <div class="chat-messages-wrapper">
-                    <div class="chat-messages">
-                        <!-- sent by others -->
-                        <div>
-                            <div class="chat-message-container justify-start">
-                                <div class="chat-message background-light">
-                                    <p class="chat-msg-text color-dark">hello hello 456</p>
-                                </div>
-                                <p class="chat-msg-name pl-10">asd</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="chat-message-container justify-start">
-                                <div class="chat-message background-light">
-                                    <p class="chat-msg-text color-dark">hello hello 45678</p>
-                                </div>
-                                <p class="chat-msg-name pl-10">asd</p>
-                            </div>
-                        </div>
-                        <!-- sent by current user -->
-                        <div>
-                            <div class="chat-message-container justify-end">
-                                <p class="chat-msg-name pr-10">abc</p>
-                                <div class="chat-message background-blue">
-                                    <p class="chat-msg-text color-white">hello hello 123</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="chat-messages" id="chat-msgs"></div>
                 </div>
 
                 <!-- input text -->
                 <form class="chat-form">
-                    <input type="text" placeholder="Type a message..." />
-                    <button class="send-button">Send</button>
+                    <input type="text" id="text-input" placeholder="Type a message..." />
+                    <button class="send-button" id="send-btn">Send</button>
                 </form>
             </div>
 
             <!-- chat info on the right -->
-            <div class="chat-info-wrapper">
-                <div>
-                    <h2 class="chat-info-tit">People currently chatting:</h2>
-                    <div class="chat-info-content">
-                        <ul>
-                            <li class="active-item">aaa</li>
-                            <li class="active-item">aaa</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="chat-info-wrapper">-->
+<!--                <div>-->
+<!--                    <h2 class="chat-info-tit">People currently chatting:</h2>-->
+<!--                    <div class="chat-info-content">-->
+<!--                        <ul>-->
+<!--                            <li class="active-item">aaa</li>-->
+<!--                            <li class="active-item">aaa</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </script>
 
+    <!-- new message tip -->
+    <div id="insert-msg-reminder"></div>
+    <!-- change script for template-->
     <div id="insert-script"></div>
 </body>
 </html>

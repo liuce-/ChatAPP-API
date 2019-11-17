@@ -1,16 +1,21 @@
 package edu.rice.comp504.payload;
 
 public class CreateRoom {
+
     private String roomName;
-    private int age;
+    private int minAge;
+    private int maxAge;
     private String location;
     private String school;
+    private String ownerName;
 
-    public CreateRoom(String roomName, int age, String location, String school) {
+    public CreateRoom(String roomName, int minAge, int maxAge, String location, String school, String ownerName) {
         this.roomName = roomName;
-        this.age = age;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
         this.location = location;
         this.school = school;
+        this.ownerName = ownerName;
     }
 
     public String getRoomName() {
@@ -21,12 +26,20 @@ public class CreateRoom {
         this.roomName = roomName;
     }
 
-    public int getAge() {
-        return age;
+    public int getMinAge() {
+        return minAge;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
     }
 
     public String getLocation() {
@@ -43,5 +56,13 @@ public class CreateRoom {
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }
