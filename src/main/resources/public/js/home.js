@@ -58,12 +58,12 @@
         if(type === "joined") {
             tpl = rooms.map(item => {
                 return `<li><span class="name">${item.name}${item.isOwned ? '<i class="own-icon">*</i>'
-                : ''}</span><a class="join-btn" href="#/room/${item.id}">Enter</a></li>`;
+                : ''}</span><a class="join-btn" href="#/room${item.id}${item.isOwned ? "?owner" : ''}">Enter</a></li>`;
             });
             joined_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
         } else if(type === "possible") {
             tpl = rooms.map(item => {
-                return `<li><span class="name">${item.name}</span><a class="join-btn" href="#/room/${item.id}">Join</a></li>`;
+                return `<li><span class="name">${item.name}</span><a class="join-btn" href="#/room${item.id}">Join</a></li>`;
             });
             possible_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
         }
