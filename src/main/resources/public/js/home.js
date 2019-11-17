@@ -1,20 +1,20 @@
-(async function() {
+(function () {
     // websocket should already exists here...
     // if not, user refresh the page (connection closed), go back to login page
-    if(!window.socket) {
+    if (!window.socket) {
         window.location.href = '/';
         return;
     }
 
     const profileBtn = document.querySelector("#profile-btn"),
-          createRoomBtn = document.querySelector("#create-room-btn"),
-          createRoomActionBtn = document.querySelector("#create-room-action"),
-          profileDialog = document.querySelector("#profile-dialog"),
-          createRoomDialog = document.querySelector("#create-room-dialog"),
-          logoutBtn = document.querySelector("[data-logout]"),
-          profileInfo = document.querySelectorAll("[data-profile]"),
-          joined_rooms = document.querySelector("#joined_rooms"),
-          possible_rooms = document.querySelector("#possible_rooms");
+        createRoomBtn = document.querySelector("#create-room-btn"),
+        createRoomActionBtn = document.querySelector("#create-room-action"),
+        profileDialog = document.querySelector("#profile-dialog"),
+        createRoomDialog = document.querySelector("#create-room-dialog"),
+        logoutBtn = document.querySelector("[data-logout]"),
+        profileInfo = document.querySelectorAll("[data-profile]"),
+        joined_rooms = document.querySelector("#joined_rooms"),
+        possible_rooms = document.querySelector("#possible_rooms");
 
     /*
         socket status:
@@ -55,13 +55,13 @@
     // show room list
     const renderRoomlist = (rooms, type) => {
         let tpl;
-        if(type === "joined") {
+        if (type === "joined") {
             tpl = rooms.map(item => {
                 return `<li><span class="name">${item.name}${item.isOwned ? '<i class="own-icon">*</i>'
-                : ''}</span><a class="join-btn" href="#/room${item.id}${item.isOwned ? "?owner" : ''}">Enter</a></li>`;
+                    : ''}</span><a class="join-btn" href="#/room${item.id}${item.isOwned ? "?owner" : ''}">Enter</a></li>`;
             });
             joined_rooms.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
-        } else if(type === "possible") {
+        } else if (type === "possible") {
             tpl = rooms.map(item => {
                 return `<li><span class="name">${item.name}</span><a class="join-btn" href="#/room${item.id}">Join</a></li>`;
             });
@@ -69,7 +69,28 @@
         }
     };
 
-    // fake data
+    // get two room lists
+    const getJoinedRooms = async () => {
+        try {
+            let joinedRoomData = await fetch(`/joined_rooms/${username}`);
+            renderRoomlist(joinedRoomData.roomlist, "joined");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getJoinedRooms();
+
+    const getPossibleRooms = async () => {
+        try {
+            let possibleRoomData = await fetch(`/possible_rooms/${username}`);
+            renderRoomlist(possibleRoomData.roomlist, "possible");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getPossibleRooms();
+
+    // fake profile data
     let d = {
         username: 'data.info.username',
         age: 'profile.age',
@@ -91,10 +112,10 @@
                 location: profile.location,
                 school: profile.school,
             });
-        } else if(type === 'joined_rooms') {
-            renderRoomlist(data.info.roomlist, "joined");
-        } else if(type === 'possible_rooms') {
-            renderRoomlist(data.info.roomlist, "possible");
+        } else if (type === 'joined_rooms' && data.info.msg) {
+            getJoinedRooms();
+        } else if (type === 'possible_rooms' && data.info.msg) {
+            getPossibleRooms();
         }
     });
 
@@ -135,11 +156,11 @@
                 school: 'Rice',
             };
             const resp = await fetch('/create_room', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data),
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
             });
             // TODO check data (e.g. OK)
         } catch (error) {

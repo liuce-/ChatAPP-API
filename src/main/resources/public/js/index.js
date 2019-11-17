@@ -1,14 +1,14 @@
-(function() {
+(function () {
     const loginWrapper = document.querySelector('#login-wrapper'),
-          registerWrapper = document.querySelector('#register-wrapper'),
-          loginBtn = document.querySelector('#login-btn'),
-          registerBtn = document.querySelector('#register-form'),
-          loginForm = document.querySelector('#login-form'),
-          registerForm = document.querySelector('#register-form');
+        registerWrapper = document.querySelector('#register-wrapper'),
+        loginBtn = document.querySelector('#login-btn'),
+        registerBtn = document.querySelector('#register-form'),
+        loginForm = document.querySelector('#login-form'),
+        registerForm = document.querySelector('#register-form');
 
     const addScript = (src) => {
         let newScript = document.createElement('script');
-        newScript.setAttribute("type","text/javascript");
+        newScript.setAttribute("type", "text/javascript");
         newScript.setAttribute("src", src);
         document.getElementsByTagName("head")[0].appendChild(newScript);
     };
@@ -55,7 +55,7 @@
         let age = registerForm.elements.age.value;
         let location = registerForm.elements.location.value;
         let school = registerForm.elements.school.value;
-        if(!username || !age || !location || !school) return;
+        if (!username || !age || !location || !school) return;
 
         let params = {
             method: 'post',
@@ -69,7 +69,7 @@
         //let registerData = await fetch('/register', params);
 
         let registerData = {res: 'ok'};
-        if(registerData.res === 'ok') {
+        if (registerData.res === 'ok') {
             window.username = username.trim();
             // this should before location changes
             addScript("./js/websocket.js");

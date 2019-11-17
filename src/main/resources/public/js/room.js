@@ -14,11 +14,11 @@
     // some initial info
     // current room id
     const hashTmpArr = location.hash.split('/');
-    const roomId = Number(hashTmpArr[hashTmpArr.length - 1]);
+    const roomId = Number(hashTmpArr[hashTmpArr.length - 1].split('?')[0]);
+    const isOwner = location.href.includes('owner');
 
     // owner can send announcement
-    location.href.includes('owner') ? announementBtn.classList.remove('hidden') : announementBtn.classList.add('hidden');
-
+    isOwner ? announementBtn.classList.remove('hidden') : announementBtn.classList.add('hidden');
 
     // send room id first
     let msg = {
@@ -83,7 +83,7 @@
         if (target.dataset && (target.dataset.chat || target.dataset.kick)) {
             // chat
             if (target.dataset.chat) {
-                location.href = `#/chat?user=${target.dataset.chat}`;
+                location.href = `#/chat?user=${target.dataset.chat}&room=${roomId}&isOwner=${isOwner}`;
             } else if (target.dataset.kick) {
                 // kick
                 let msg = {
