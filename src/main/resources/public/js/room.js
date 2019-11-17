@@ -9,7 +9,7 @@
         roomTitle = document.querySelector("#room-title"),
         logoutBtn = document.querySelector("[data-logout]"),
         leavePermBtn = document.querySelector("#leave-perm-btn"),
-        peopleList = document.querySelector("#people-list");
+        peopleListContainer = document.querySelector("#people-list");
 
     // some initial info
     // current room id
@@ -27,12 +27,9 @@
     };
     socket.send(JSON.stringify(msg));
 
-    // show all announcements
+    // show the new announcement
     const renderAnnouncement = (announce) => {
-        let tpl = announce.map(item => {
-            return `<li>${item.content}</li>`
-        });
-        announementList.innerHTML = tpl.length ? tpl.join("") : `<li>Empty...</li>`;
+        announementList.innerHTML += `<li>${announce}</li>`
     };
 
     // show people list
@@ -44,8 +41,18 @@
                 return `<li><span class="name">${item.username}${item.isOwner ? '<i class="own-icon">*</i>' : ''}</span><span class="chat-btn btn" data-chat=${item.username}>Chat</span><span class="kick-btn btn ${item.isOwner ? '' : 'hidden'}" data-kick=${item.username}>Kick</span></li>`
             }
         });
-        peopleList.innerHTML = tpl.join("");
+        peopleListContainer.innerHTML = tpl.join("");
     };
+
+    const getPeopleList = async () => {
+        try {
+            let PeopleList = await fetch(`/member_list/${roomId}`);
+            renderPeopleList(PeopleList.people);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getPeopleList();
 
     // socket give the announcements
     socket.addEventListener('message', (ev) => {
@@ -55,9 +62,21 @@
         if (type === 'enter_room') {
             roomTitle.innerHTML = `${roomTitle.innerHTML} ${data.info.room_name}`
         } else if (type === 'announcement') {
-            renderAnnouncement(data.info.announcements);
-        } else if (type === 'member_list') {
-            renderPeopleList(data.info.people);
+            renderAnnouncement(data.info.announcement);
+        } else if (type === 'enter_room') {
+            if (data.info.room_id === roomId) {
+                // Todo: add this to announcement
+                renderAnnouncement();
+                // get member list
+                getPeopleList();
+            }
+        } else if (type === 'leave_room') {
+            if (data.info.room_id === roomId) {
+                // Todo: add this to announcement with leaving reason
+                renderAnnouncement();
+                // get member list
+                getPeopleList();
+            }
         }
     });
 
@@ -78,7 +97,7 @@
     });
 
     // chat or kick with one person
-    peopleList.addEventListener('click', (ev) => {
+    peopleListContainer.addEventListener('click', (ev) => {
         let target = ev.target;
         if (target.dataset && (target.dataset.chat || target.dataset.kick)) {
             // chat
