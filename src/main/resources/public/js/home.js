@@ -15,7 +15,13 @@
           profileInfo = document.querySelectorAll("[data-profile]"),
           joined_rooms = document.querySelector("#joined_rooms"),
           possible_rooms = document.querySelector("#possible_rooms");
-
+          schoolsWrapper = document.getElementById('schools-wrapper');
+          locationsWrapper = document.getElementById('locations-wrapper');
+          creatingRoomName = document.getElementById('creating-room-name');
+          minAge = document.getElementById(`creating-room-age-lower`);
+          maxAge = document.getElementById(`creating-room-age-upper`);
+    const locations = ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Antarctica', 'Australia'];
+    const schools = ['Dont care', 'Rice', 'ABC']; // TODO 'full' school list
     /*
         socket status:
             CONNECTING (0)
@@ -114,6 +120,8 @@
     createRoomBtn.addEventListener('click', () => {
         createRoomDialog.classList.remove('hidden');
         profileDialog.classList.add('hidden');
+        renderLocations(locations);
+        renderSchool(schools);
     });
 
     // close dialog
@@ -124,24 +132,59 @@
         })
     });
 
+    // Render location options in creating room
+    const renderLocations = (locations) => {
+        let wrapper = locationsWrapper;
+        let template = locations.reduce((prev, loc) => `${prev} <label><input type="checkbox" value="${loc}" id="creating-room-loc-${loc}">${loc}</label>`, '');
+        wrapper.innerHTML = template;
+    };
+
+    // Render schools list in creating room
+    const renderSchool = (schools) => {
+        let wrapper = schoolsWrapper;
+        let template = schools.reduce((prev, school) => `${prev} <option value="${school}" id="creating-room-school-${school}">${school}</option>`, '');
+        wrapper.innerHTML = template;
+    };
+
     // click create-room-action button in create-room-dialog
     createRoomActionBtn.addEventListener('click', async () => {
-        // TODO form format (e.g. checkbox etc.)
         try {
-            let data = {
-                roomName: 'templateRoom',
-                age: 12,
-                location: 'North and South America',
-                school: 'Rice',
+            // Get locations
+            let selectedLocations = locations.reduce((prev, loc) => {
+                prev = (document.getElementById(`creating-room-loc-${loc}`).checked) ? prev.concat([loc]) : prev;
+                return prev;
+            }, []);
+
+            // Get school
+            let schoolSelect = schoolsWrapper;
+            let school = schoolSelect.options[schoolSelect.selectedIndex].value;
+
+            // Send room info
+            let payload = {
+                ownerName: username,
+                room_name: creatingRoomName.value,
+                min_age: minAge.value,
+                max_age: maxAge.value,
+                locations: selectedLocations,
+                school,
             };
+            // console.log(payload);
             const resp = await fetch('/create_room', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data),
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload),
             });
-            // TODO check data (e.g. OK)
+
+            // // TODO resp handling
+            // if (resp.result !== 'ok') {
+            //     throw `room creation failed, message: ${resp.result}`;
+            // }
+
+            // Set up room
+            // resp: {room_name: xx, room_id: xx, result: 'ok'}
+            joined_rooms.innerHTML = `${joined_rooms.innerHTML} <a class="join-btn" href="#/room/${resp.room_id}?owner">${payload.room_name}</a>`;
         } catch (error) {
             console.error(error);
         }

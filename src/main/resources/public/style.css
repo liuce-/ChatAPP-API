@@ -225,6 +225,14 @@ input:focus, textarea:focus, select:focus {
     padding: 2px 3%;
     line-height: 30px;
 }
+
+.home-create-box .smallitem input{
+    width: 30%;
+    height: 30px;
+    padding: 2px 3%;
+    /*line-height: 30px;*/
+}
+
 .home-create-box .restriction {
     margin-left: 20px;
     background-color: dodgerblue;
