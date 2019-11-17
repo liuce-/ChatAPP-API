@@ -39,7 +39,7 @@
         let msg = sendInput.value.trim();
         let sendMsg = {
             type: 'chat',
-            info: {from: username, to: chatUser, msg}
+            info: {sender: username, receiver: chatUser, room_id: roomId, msg}
         };
         socket.send(JSON.stringify(sendMsg));
 
@@ -50,7 +50,7 @@
                                 <p class="chat-msg-text color-white">${msg}</p>
                             </div>
                           </div>
-                        </div>`
+                        </div>`;
         chatContainer.innerHTML += sendTpl;
     });
 
@@ -64,9 +64,9 @@
                                 <div class="chat-message background-light">
                                     <p class="chat-msg-text color-dark">${data.info.msg}</p>
                                 </div>
-                                <p class="chat-msg-name pl-10">${data.info.from}</p>
+                                <p class="chat-msg-name pl-10">${data.info.sender}</p>
                             </div>
-                          </div>`
+                          </div>`;
             chatContainer.innerHTML += receiveTpl;
         }
     });

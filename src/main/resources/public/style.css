@@ -607,3 +607,35 @@ input:focus, textarea:focus, select:focus {
         display: none;
     }
 }
+
+/* new message reminder */
+.msg-reminder-container {
+    position: fixed;
+    left: 20px;
+    bottom: 0;
+}
+.msg-reminder {
+    padding: 6px 12px;
+    background: royalblue;
+    cursor: pointer;
+    color: antiquewhite;
+    border-radius: 8px;
+}
+.msg-container {
+    min-height: 200px;
+    background: antiquewhite;
+}
+.msg-tit {
+    background: royalblue;
+    color: antiquewhite;
+    font-weight: bold;
+    border: 1px solid darkblue;
+    text-indent: 6px;
+    padding: 4px 0;
+    cursor: pointer;
+}
+.msg-tip {
+    border-bottom: 1px dashed darkblue;
+    padding: 2px;
+    cursor: pointer;
+}

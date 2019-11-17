@@ -73,6 +73,7 @@
             window.username = username.trim();
             // this should before location changes
             addScript("./js/websocket.js");
+            addScript("./js/msgReminder.js");
             window.location.hash = '#/home';
         }
     });
