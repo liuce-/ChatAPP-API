@@ -46,10 +46,11 @@ public class User {
 
     // TODO: do we need to keep track of individual chats?
 
-    public User(String username, int age, String school) {
+    public User(String username, int age, String school, String location) {
         this.username = username;
         this.age = age;
         this.school = school;
+        this.location = location;
         chatRooms = new ArrayList<ChatRoom>();
     }
 

@@ -1,5 +1,6 @@
 package edu.rice.comp504.controller;
 
+import edu.rice.comp504.Dispatcher;
 import edu.rice.comp504.model.User;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
@@ -12,9 +13,11 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
  */
 @WebSocket
 public class WebSocketController {
+    private Dispatcher dispatcher = Dispatcher.getOnly();
 
     /**
      * Open user's session.
+     *
      * @param userSession The user whose session is opened.
      */
     @OnWebSocketConnect
@@ -33,24 +36,23 @@ public class WebSocketController {
 
     /**
      * Close the user's session.
+     *
      * @param user The use whose session is closed.
      */
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
-        String username = ChatAppController.userNameMap.get(user).getUsername();
-        ChatAppController.userNameMap.remove(user);
+        dispatcher.closeSession(user, statusCode, reason);
     }
 
     /**
      * Send a message.
-     * @param user  The session user sending the message.
+     *
+     * @param user    The session user sending the message.
      * @param message The message to be sent.
      */
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
-       // message.setFrom(users.get(session.getId()));
-        User sender = ChatAppController.userNameMap.get(user);
-        ChatAppController.broadcastMessage(sender,message);
         System.out.println(message);
+        dispatcher.handleMsg(user, message);
     }
 }
