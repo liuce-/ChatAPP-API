@@ -63,7 +63,7 @@ public class Dispatcher {
                 // TODO: check if user exists.
 
                 // notify others in this chatroom
-                JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber);
+                JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber, joinChatRoom.getRoomID());
                 pcs.firePropertyChange(String.valueOf(joinChatRoom.getRoomID()), null, cmd);
 
                 // the new member should listen to this chatroom
