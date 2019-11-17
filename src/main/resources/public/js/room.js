@@ -62,18 +62,20 @@
         if (type === 'enter_room') {
             roomTitle.innerHTML = `${roomTitle.innerHTML} ${data.info.room_name}`
         } else if (type === 'announcement') {
-            renderAnnouncement(data.info.announcement);
+            renderAnnouncement(`${data.info.username} announced: ${data.info.announcement}`);
         } else if (type === 'enter_room') {
             if (data.info.room_id === roomId) {
                 // Todo: add this to announcement
-                renderAnnouncement();
+                // {type: "enter_room", info: {room_id: xx, username: xx}}
+                renderAnnouncement(`${data.info.username} entered`);
                 // get member list
                 getPeopleList();
             }
         } else if (type === 'leave_room') {
             if (data.info.room_id === roomId) {
                 // Todo: add this to announcement with leaving reason
-                renderAnnouncement();
+                // {type: “leave_room”, info: {username: xx, room_id: xx, reason: xx}}
+                renderAnnouncement(`${data.info.username} left since ${data.info.reason}`);
                 // get member list
                 getPeopleList();
             }
