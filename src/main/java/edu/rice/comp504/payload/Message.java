@@ -1,10 +1,12 @@
 package edu.rice.comp504.payload;
 
+import com.google.gson.Gson;
+
 public class Message {
     private String type;
-    private Object info;
+    private String info;
 
-    public Message(String type, Object info) {
+    public Message(String type, String info) {
         this.type = type;
         this.info = info;
     }
@@ -17,11 +19,14 @@ public class Message {
         this.type = type;
     }
 
-    public Object getInfo() {
+    public String getInfo() {
         return info;
     }
 
     public void setInfo(String info) {
         this.info = info;
     }
+
+
+
 }

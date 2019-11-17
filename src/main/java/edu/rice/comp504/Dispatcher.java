@@ -3,6 +3,8 @@ package edu.rice.comp504;
 import com.google.gson.Gson;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
+import edu.rice.comp504.payload.UserRegister;
+import edu.rice.comp504.payload.UserRegisterResponse;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.beans.PropertyChangeSupport;
@@ -34,8 +36,17 @@ public class Dispatcher {
 
     }
 
-    public String register(String message) {
-        return null;
+    public String register(String body) {
+        UserRegister userRegister = gson.fromJson(body, UserRegister.class);
+        UserRegisterResponse userRegisterResponse = new UserRegisterResponse(userRegister.getUserName(), false);
+
+        if (!allUsers.containsKey(userRegister.getUserName())) {
+            User newUser = new User(userRegister.getUserName(), userRegister.getAge(), userRegister.getSchool(), userRegister.getLocation());
+            allUsers.put(newUser.getUsername(), newUser);
+            userRegisterResponse.setResult(true);
+        }
+
+        return gson.toJson(userRegisterResponse);
     }
 
     public String createRoom(String body) {
