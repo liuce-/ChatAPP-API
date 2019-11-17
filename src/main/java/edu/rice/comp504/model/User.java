@@ -1,5 +1,6 @@
 package edu.rice.comp504.model;
 
+import edu.rice.comp504.cmd.AbstractCmd;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.beans.PropertyChangeEvent;
@@ -82,6 +83,7 @@ public class User implements PropertyChangeListener {
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        AbstractCmd cmd = (AbstractCmd) evt.getNewValue();
+        cmd.execute(this);
     }
 }
