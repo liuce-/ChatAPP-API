@@ -2,6 +2,7 @@ package edu.rice.comp504;
 
 import com.google.gson.Gson;
 import edu.rice.comp504.cmd.CreateChatRoomCmd;
+import edu.rice.comp504.cmd.SendChatRoomAnnouncementCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import edu.rice.comp504.payload.*;
@@ -55,20 +56,17 @@ public class Dispatcher {
                 }
             }
             break;
-
             case "enter_room": {
 
             }
             break;
             case "announcement": {
-
+                SendAnnouncement sendAnnouncement = gson.fromJson(msg.getInfo(), SendAnnouncement.class);
+                SendChatRoomAnnouncementCmd sendChatRoomAnnouncementCmd = new SendChatRoomAnnouncementCmd(sendAnnouncement.getAnnouncementList());
+                pcs.firePropertyChange(String.valueOf(sendAnnouncement.getRoomID()), null, sendChatRoomAnnouncementCmd);
             }
             break;
             case "chat": {
-
-            }
-            break;
-            case "room_list": {
 
             }
             break;
