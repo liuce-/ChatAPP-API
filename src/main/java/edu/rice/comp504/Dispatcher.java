@@ -28,10 +28,10 @@ public class Dispatcher {
 
     public void handleMsg(Session user, String message) {
 
-
     }
 
     public void closeSession(Session session, int statusCode, String reason) {
+
     }
 
     public String register(String message) {
@@ -55,7 +55,6 @@ public class Dispatcher {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         });
     }
 

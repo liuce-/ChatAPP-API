@@ -1,4 +1,4 @@
-package edu.rice.comp504.endpoint;
+package edu.rice.comp504.payload;
 
 public class UserRegister {
     private String userName;
