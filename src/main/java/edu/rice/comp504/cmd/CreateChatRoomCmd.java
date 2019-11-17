@@ -19,6 +19,7 @@ public class CreateChatRoomCmd extends AbstractCmd {
     public void execute(User user) {
         if (restriction.isQualified(user)) {
             try {
+                // TODO(calvinliu): change the response.
                 user.getSession().getRemote().sendString(gson.toJson("Room list has changed"));
             } catch (IOException e) {
                 e.printStackTrace();

@@ -2,6 +2,7 @@ package edu.rice.comp504;
 
 import com.google.gson.Gson;
 import edu.rice.comp504.cmd.CreateChatRoomCmd;
+import edu.rice.comp504.cmd.JoinChatRoomCmd;
 import edu.rice.comp504.cmd.SendChatRoomAnnouncementCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
@@ -20,7 +21,7 @@ public class Dispatcher {
     // only one instance
     private static Dispatcher dispatcher = new Dispatcher();
 
-    public Map<String, User> allUsers = new ConcurrentHashMap<>();
+    public Map<String, User> allUsers = new ConcurrentHashMap<String, User>();
     public Map<Session, User> userNameMap = new ConcurrentHashMap<>();
 
     public Map<Integer, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
@@ -57,7 +58,17 @@ public class Dispatcher {
             }
             break;
             case "enter_room": {
+                JoinChatRoom joinChatRoom = gson.fromJson(msg.getInfo(), JoinChatRoom.class);
+                User newMemeber = allUsers.get(joinChatRoom.getUsername());
+                // TODO: check if user exists.
 
+                // notify others in this chatroom
+                JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber, joinChatRoom.getRoomID());
+                pcs.firePropertyChange(String.valueOf(joinChatRoom.getRoomID()), null, cmd);
+
+                // the new member should listen to this chatroom
+                // (DO NOT switch the order of listening to this chat room and firing the evt).
+                pcs.addPropertyChangeListener(String.valueOf(joinChatRoom.getRoomID()), newMemeber);
             }
             break;
             case "announcement": {
