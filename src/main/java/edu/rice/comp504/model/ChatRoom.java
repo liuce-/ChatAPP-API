@@ -18,7 +18,7 @@ public class ChatRoom {
         this.id = nextAvailableID++;
     }
 
-    private ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction, User owner) {
+    public ChatRoom(String name, Point ageRestriction, String locRestriction, String schoolRestriction, User owner) {
         this.name = name;
         this.owner = owner;
         this.restriction = new Restriction(ageRestriction, null, null);
@@ -34,7 +34,7 @@ public class ChatRoom {
         this.id = nextAvailableID++;
     }
 
-    private ChatRoom(String name, User owner) {
+    public ChatRoom(String name, User owner) {
         this.name = name;
         this.owner = owner;
         this.restriction = new Restriction(null, null, null);
@@ -43,6 +43,30 @@ public class ChatRoom {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Restriction getRestriction() {
+        return restriction;
+    }
+
+    public void setRestriction(Restriction restriction) {
+        this.restriction = restriction;
     }
 
     /**

@@ -1,13 +1,17 @@
 package edu.rice.comp504;
 
 import com.google.gson.Gson;
+import edu.rice.comp504.cmd.CreateChatRoomCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.UserRegister;
-import edu.rice.comp504.payload.UserRegisterResponse;
+import edu.rice.comp504.payload.*;
+import edu.rice.comp504.payload.response.CreateRoomResponse;
+import edu.rice.comp504.payload.response.UserRegisterResponse;
 import org.eclipse.jetty.websocket.api.Session;
 
+import java.awt.*;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,8 +20,9 @@ public class Dispatcher {
     private static Dispatcher dispatcher = new Dispatcher();
 
     public Map<String, User> allUsers = new ConcurrentHashMap<>();
-    public Map<String, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
     public Map<Session, User> userNameMap = new ConcurrentHashMap<>();
+
+    public Map<Integer, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
     public int nextUserId = 1;
     public Gson gson;
 
@@ -28,7 +33,48 @@ public class Dispatcher {
         this.gson = new Gson();
     }
 
-    public void handleMsg(Session user, String message) {
+    public void handleMsg(Session userSession, String message) {
+        Message msg = gson.fromJson(message, Message.class);
+        switch (msg.getType()) {
+            case "login": {
+                LoginMsg loginMsg = gson.fromJson(msg.getInfo(), LoginMsg.class);
+                String response = "fail";
+
+                // the user must has registered before.
+                if (allUsers.containsKey(loginMsg.getUsername())) {
+                    User user = allUsers.get(loginMsg.getUsername());
+                    userNameMap.put(userSession, user);
+                    user.setSession(userSession);
+                    pcs.addPropertyChangeListener("user", user);
+                    response = gson.toJson(user);
+                }
+                try {
+                    userSession.getRemote().sendString(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            break;
+
+            case "enter_room": {
+
+            }
+            break;
+            case "announcement": {
+
+            }
+            break;
+            case "chat": {
+
+            }
+            break;
+            case "room_list": {
+
+            }
+            break;
+            default:
+                System.out.println("No matching result for " + message);
+        }
 
     }
 
@@ -50,7 +96,20 @@ public class Dispatcher {
     }
 
     public String createRoom(String body) {
-        return null;
+        // create this room
+        CreateRoom roomPayload = gson.fromJson(body, CreateRoom.class);
+        // TODO: check if the owner exists.
+        ChatRoom room = new ChatRoom(roomPayload.getRoomName(), new Point(roomPayload.getMinAge(), roomPayload.getMaxAge()), roomPayload.getLocation(), roomPayload.getSchool(), allUsers.get(roomPayload.getOwnerName()));
+
+        chatRoomMap.put(room.getId(), room);
+        pcs.addPropertyChangeListener(String.valueOf(room.getId()), room.getOwner());
+
+        // broadcast this new room to all (qualified) users
+        CreateChatRoomCmd cmd = new CreateChatRoomCmd(room.getRestriction());
+        pcs.firePropertyChange("user", null, cmd);
+
+        // response
+        return gson.toJson(new CreateRoomResponse(room.getName(), true));
     }
 
     /**
