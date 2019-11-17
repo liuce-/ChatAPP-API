@@ -237,40 +237,13 @@
 
                 <!-- messages -->
                 <div class="chat-messages-wrapper">
-                    <div class="chat-messages">
-                        <!-- sent by others -->
-                        <div>
-                            <div class="chat-message-container justify-start">
-                                <div class="chat-message background-light">
-                                    <p class="chat-msg-text color-dark">hello hello 456</p>
-                                </div>
-                                <p class="chat-msg-name pl-10">asd</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="chat-message-container justify-start">
-                                <div class="chat-message background-light">
-                                    <p class="chat-msg-text color-dark">hello hello 45678</p>
-                                </div>
-                                <p class="chat-msg-name pl-10">asd</p>
-                            </div>
-                        </div>
-                        <!-- sent by current user -->
-                        <div>
-                            <div class="chat-message-container justify-end">
-                                <p class="chat-msg-name pr-10">abc</p>
-                                <div class="chat-message background-blue">
-                                    <p class="chat-msg-text color-white">hello hello 123</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="chat-messages" id="chat-msgs"></div>
                 </div>
 
                 <!-- input text -->
                 <form class="chat-form">
-                    <input type="text" placeholder="Type a message..." />
-                    <button class="send-button">Send</button>
+                    <input type="text" id="text-input" placeholder="Type a message..." />
+                    <button class="send-button" id="send-btn">Send</button>
                 </form>
             </div>
 

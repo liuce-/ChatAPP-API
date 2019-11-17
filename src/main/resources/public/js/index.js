@@ -68,8 +68,8 @@
         };
         //let registerData = await fetch('/register', params);
 
-        let registerData = {res: 'ok'};
-        if (registerData.res === 'ok') {
+        let registerData = {res: 'true'};
+        if (registerData.res === 'true') {
             window.username = username.trim();
             // this should before location changes
             addScript("./js/websocket.js");
