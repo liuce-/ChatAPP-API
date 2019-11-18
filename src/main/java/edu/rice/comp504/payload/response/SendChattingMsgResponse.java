@@ -2,6 +2,9 @@ package edu.rice.comp504.payload.response;
 
 import com.google.gson.Gson;
 
+/**
+ * Send a msg to the receiver.
+ */
 public class SendChattingMsgResponse implements ResponseAdapter {
     private String sender;
     private String receiver;
@@ -10,6 +13,15 @@ public class SendChattingMsgResponse implements ResponseAdapter {
     private String roomOwner;
     private String msg;
 
+    /**
+     * Constructor.
+     * @param sender the sender.
+     * @param receiver the recevier.
+     * @param roomName the roomname where they initialize the private chat.
+     * @param roomID the room id where they initialize the private chat.
+     * @param roomOwner the owner of the room.
+     * @param msg send this msg.
+     */
     public SendChattingMsgResponse(String sender, String receiver, String roomName, int roomID, String roomOwner, String msg) {
         this.sender = sender;
         this.receiver = receiver;
@@ -19,55 +31,12 @@ public class SendChattingMsgResponse implements ResponseAdapter {
         this.msg = msg;
     }
 
-    public String getRoomOwner() {
-        return roomOwner;
-    }
 
-    public void setRoomOwner(String roomOwner) {
-        this.roomOwner = roomOwner;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    public int getRoomID() {
-        return roomID;
-    }
-
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-
+    /**
+     * get a JSON string to respond.
+     * @param gson an Gson instance.
+     * @return a JSON representation.
+     */
     @Override
     public String getJsonRepresentation(Gson gson) {
         return gson.toJson(this);

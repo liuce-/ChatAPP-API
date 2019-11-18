@@ -15,7 +15,6 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -53,7 +52,7 @@ public class Dispatcher {
                     userNameMap.put(userSession, user);
                     user.setSession(userSession);
                     pcs.addPropertyChangeListener("user", user);
-                    response.setSuccess(true);
+                    response.setStatus(true);
                     response.setUser(user);
                 }
                 try {

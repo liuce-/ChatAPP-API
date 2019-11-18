@@ -2,7 +2,7 @@ package edu.rice.comp504.cmd;
 
 import edu.rice.comp504.model.Restriction;
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.response.CreateChatRoomResponse;
+import edu.rice.comp504.payload.response.ChatRoomChangeResponse;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class CreateChatRoomCmd extends AbstractCmd {
         if (restriction.isQualified(user)) {
             try {
                 // TODO(calvinliu): change the response.
-                CreateChatRoomResponse response = new CreateChatRoomResponse();
+                ChatRoomChangeResponse response = new ChatRoomChangeResponse();
                 user.getSession().getRemote().sendString(response.getJsonRepresentation(gson));
             } catch (IOException e) {
                 e.printStackTrace();
