@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import edu.rice.comp504.cmd.CreateChatRoomCmd;
 import edu.rice.comp504.cmd.JoinChatRoomCmd;
 import edu.rice.comp504.cmd.SendChatRoomAnnouncementCmd;
+import edu.rice.comp504.cmd.SendMessageCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import edu.rice.comp504.payload.*;
@@ -78,7 +79,9 @@ public class Dispatcher {
             }
             break;
             case "chat": {
-
+                SendChattingMsg sendChattingMsg = gson.fromJson(msg.getInfo(), SendChattingMsg.class);
+                SendMessageCmd cmd = new SendMessageCmd(sendChattingMsg);
+                pcs.firePropertyChange("user", null, cmd);
             }
             break;
             default:
