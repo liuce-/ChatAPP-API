@@ -46,8 +46,9 @@
 
     const getPeopleList = async () => {
         try {
-            let PeopleList = await fetch(`/member_list/${roomId}`);
-            renderPeopleList(PeopleList.people);
+            let peopleList = await fetch(`/member_list/${roomId}`);
+            peopleList = await peopleList.json();
+            renderPeopleList(peopleList.people);
         } catch (err) {
             console.log(err);
         }

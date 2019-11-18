@@ -79,6 +79,7 @@
     const getJoinedRooms = async () => {
         try {
             let joinedRoomData = await fetch(`/joined_rooms/${username}`);
+            joinedRoomData = await joinedRoomData.json();
             renderRoomlist(joinedRoomData.roomlist, "joined");
         } catch (err) {
             console.log(err);
@@ -89,6 +90,7 @@
     const getPossibleRooms = async () => {
         try {
             let possibleRoomData = await fetch(`/possible_rooms/${username}`);
+            possibleRoomData = await possibleRoomData.json();
             renderRoomlist(possibleRoomData.roomlist, "possible");
         } catch (err) {
             console.log(err);
