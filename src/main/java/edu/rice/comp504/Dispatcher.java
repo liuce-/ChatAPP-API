@@ -61,6 +61,7 @@ public class Dispatcher {
         Message msg = gson.fromJson(message, Message.class);
         switch (msg.getType()) {
             case "login": {
+                logger.info("user")
                 LoginMsg loginMsg = gson.fromJson(msg.getInfo(), LoginMsg.class);
                 UserLoginResponse response = new UserLoginResponse(null, false);
 
@@ -156,6 +157,7 @@ public class Dispatcher {
      * @return response to be sent.
      */
     public String createRoom(String body) {
+        logger.info("create room with body " + body);
         // create this room
         CreateRoom roomPayload = gson.fromJson(body, CreateRoom.class);
         // TODO: check if the owner exists.
@@ -174,7 +176,9 @@ public class Dispatcher {
         pcs.firePropertyChange("user", null, cmd);
 
         // response
-        return new CreateRoomResponse(room.getName(), true).getJsonRepresentation(gson);
+        CreateRoomResponse response = new CreateRoomResponse(room.getName(), true);
+        logger.info("response with " + response.getJsonRepresentation(gson));
+        return response.getJsonRepresentation(gson);
     }
 
     /**
