@@ -113,9 +113,9 @@
         let type = data.type;
 
         if (type === 'login') {
-            let profile = data.info.profile;
+            let profile = data.info;
             renderProfile({
-                username: data.info.username,
+                username: profile.username,
                 age: profile.age,
                 location: profile.location,
                 school: profile.school,
@@ -185,20 +185,21 @@
             // Send room info
             let payload = {
                 ownerName: username,
-                room_name: creatingRoomName.value,
-                min_age: minAge.value,
-                max_age: maxAge.value,
+                roomName: creatingRoomName.value,
+                minAge: minAge.value,
+                maxAge: maxAge.value,
                 locations: selectedLocations,
                 school,
             };
             // console.log(payload);
-            const resp = await fetch('/create_room', {
+            let resp = await fetch('/create_room', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload),
             });
+            resp = await resp.json();
 
             // // TODO resp handling
             // if (resp.result !== 'ok') {
@@ -207,7 +208,7 @@
 
             // Set up room
             // resp: {room_name: xx, room_id: xx, result: 'ok'}
-            joined_rooms.innerHTML = `${joined_rooms.innerHTML} <a class="join-btn" href="#/room/${resp.room_id}?owner">${payload.room_name}</a>`;
+            joined_rooms.innerHTML = `${joined_rooms.innerHTML} <a class="join-btn" href="#/room/${resp.roomID}?owner">${payload.roomName}</a>`;
         } catch (error) {
             console.error(error);
         }

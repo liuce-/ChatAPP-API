@@ -39,7 +39,7 @@
         let msg = sendInput.value.trim();
         let sendMsg = {
             type: 'chat',
-            info: {sender: username, receiver: chatUser, room_id: roomId, msg}
+            info: {sender: username, receiver: chatUser, roomID: roomId, msg}
         };
         socket.send(JSON.stringify(sendMsg));
 

@@ -92,7 +92,7 @@
     leavePermBtn.addEventListener('click', () => {
         let msg = {
             type: "leave_room",
-            info: JSON.stringify({username, room_id: roomId}),
+            info: JSON.stringify({username, roomID: roomId}),
         };
         socket.send(JSON.stringify(msg));
         location.href = "#/home";
@@ -109,7 +109,7 @@
                 // kick
                 let msg = {
                     type: "remove",
-                    info: JSON.stringify({username, room_id: roomId, member: target.dataset.kick}),
+                    info: JSON.stringify({username, roomID: roomId, member: target.dataset.kick}),
                 };
                 socket.send(JSON.stringify(msg));
             }
