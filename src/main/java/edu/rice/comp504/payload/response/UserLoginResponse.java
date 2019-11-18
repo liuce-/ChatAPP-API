@@ -1,6 +1,7 @@
 package edu.rice.comp504.payload.response;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import edu.rice.comp504.model.User;
 
 /**
@@ -65,10 +66,9 @@ public class UserLoginResponse implements ResponseAdapter {
      */
     @Override
     public String getJsonRepresentation(Gson gson) {
-        if (status) {
-            return gson.toJson(user);
-        } else {
-            return gson.toJson("Fail");
-        }
+        JsonObject jo = new JsonObject();
+        jo.addProperty("username", user.getUsername());
+        jo.addProperty("result", status);
+        return jo.toString();
     }
 }

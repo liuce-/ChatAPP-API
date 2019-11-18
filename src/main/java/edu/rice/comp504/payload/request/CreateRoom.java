@@ -1,7 +1,7 @@
 package edu.rice.comp504.payload.request;
 
 /**
- * Payload of creating a chat room
+ * Payload of creating a chat room.
  */
 public class CreateRoom {
 
@@ -14,11 +14,12 @@ public class CreateRoom {
 
     /**
      * Constructor.
-     * @param roomName room name.
-     * @param minAge minimum age allowed for this room.
-     * @param maxAge maximum age allowed for this room
-     * @param location location of members allowed for this room.
-     * @param school school of members allowed for this room.
+     *
+     * @param roomName  room name.
+     * @param minAge    minimum age allowed for this room.
+     * @param maxAge    maximum age allowed for this room
+     * @param location  location of members allowed for this room.
+     * @param school    school of members allowed for this room.
      * @param ownerName owner.
      */
     public CreateRoom(String roomName, int minAge, int maxAge, String[] location, String school, String ownerName) {
@@ -32,6 +33,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return room name.
      */
     public String getRoomName() {
@@ -40,6 +42,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param roomName set this name.
      */
     public void setRoomName(String roomName) {
@@ -48,6 +51,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return minAge.
      */
     public int getMinAge() {
@@ -56,6 +60,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param minAge set this minAge.
      */
     public void setMinAge(int minAge) {
@@ -64,6 +69,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return maxAge.
      */
     public int getMaxAge() {
@@ -72,6 +78,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param maxAge set this age.
      */
     public void setMaxAge(int maxAge) {
@@ -80,6 +87,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return location.
      */
     public String[] getLocation() {
@@ -88,6 +96,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param location new location.
      */
     public void setLocation(String[] location) {
@@ -96,6 +105,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return school.
      */
     public String getSchool() {
@@ -104,6 +114,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param school set this school.
      */
     public void setSchool(String school) {
@@ -112,6 +123,7 @@ public class CreateRoom {
 
     /**
      * getter.
+     *
      * @return owner name.
      */
     public String getOwnerName() {
@@ -120,6 +132,7 @@ public class CreateRoom {
 
     /**
      * setter.
+     *
      * @param ownerName set this name.
      */
     public void setOwnerName(String ownerName) {

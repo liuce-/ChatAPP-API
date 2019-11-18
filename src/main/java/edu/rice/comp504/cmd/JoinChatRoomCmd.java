@@ -13,9 +13,10 @@ public class JoinChatRoomCmd extends AbstractCmd {
     private int roomID;
 
     /**
-     *  Constructor.
+     * Constructor.
+     *
      * @param newMember this is the new guy in the chat room.
-     * @param roomID this room has a new guy.
+     * @param roomID    this room has a new guy.
      */
     public JoinChatRoomCmd(User newMember, int roomID) {
         this.newMember = newMember;
@@ -25,12 +26,14 @@ public class JoinChatRoomCmd extends AbstractCmd {
 
     /**
      * Let the user know someone has joined.
+     *
      * @param user execute this cmd on this user.
      */
     @Override
     public void execute(User user) {
         JoinChatRoomResponse response = new JoinChatRoomResponse(roomID, newMember.getUsername());
         try {
+            logger.info("Send join chat room msg to members: " + response.getJsonRepresentation(gson));
             user.getSession().getRemote().sendString(response.getJsonRepresentation(gson));
         } catch (IOException e) {
             e.printStackTrace();

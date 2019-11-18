@@ -8,12 +8,16 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Create a web socket for the server.
  */
 @WebSocket
 public class WebSocketController {
     private Dispatcher dispatcher = Dispatcher.getOnly();
+    private Logger logger = Logger.getLogger(WebSocketController.class.getName());
 
     /**
      * Open user's session.
@@ -37,9 +41,10 @@ public class WebSocketController {
 
     /**
      * Close the user's session.
-     * @param user The use whose session is closed.
+     *
+     * @param user       The use whose session is closed.
      * @param statusCode status code.
-     * @param reason reason.
+     * @param reason     reason.
      */
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
@@ -54,7 +59,7 @@ public class WebSocketController {
      */
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
-        System.out.println(message);
+        logger.info("Receive WebSocket msg with " + message + " from user " + user);
         dispatcher.handleMsg(user, message);
     }
 }

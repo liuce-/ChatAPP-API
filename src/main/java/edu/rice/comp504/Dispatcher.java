@@ -83,13 +83,17 @@ public class Dispatcher {
             }
             break;
             case "enter_room": {
+                logger.info("user try to enter_room with body " + msg.getInfo());
                 JoinChatRoom joinChatRoom = gson.fromJson(msg.getInfo(), JoinChatRoom.class);
-                User newMemeber = allUsers.get(joinChatRoom.getUsername());
-                // TODO(Serena): check if user exists.
+                if (!allUsers.containsKey(joinChatRoom.getUsername())) {
+                    logger.severe("NO user has this name " + joinChatRoom.getUsername());
+                }
 
-                // notify others in this chatroom
-                JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber, joinChatRoom.getRoomID());
-                pcs.firePropertyChange(String.valueOf(joinChatRoom.getRoomID()), null, cmd);
+                User newMemeber = allUsers.get(joinChatRoom.getUsername());
+
+                if (!chatRoomMap.containsKey(joinChatRoom.getRoomID())) {
+                    logger.severe("No chat room has the this ID " + joinChatRoom.getRoomID());
+                }
 
                 // the new member should listen to this chat room
                 // (DO NOT switch the order of listening to this chat room and firing the evt).
@@ -97,6 +101,11 @@ public class Dispatcher {
 
                 // store this new chat room in user's room list.
                 newMemeber.joinChatRoom(chatRoomMap.get(joinChatRoom.getRoomID()));
+
+                // notify all members in this chatroom
+                JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber, joinChatRoom.getRoomID());
+                pcs.firePropertyChange(String.valueOf(joinChatRoom.getRoomID()), null, cmd);
+
             }
             break;
             case "announcement": {
