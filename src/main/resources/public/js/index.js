@@ -2,7 +2,7 @@
     const loginWrapper = document.querySelector('#login-wrapper'),
         registerWrapper = document.querySelector('#register-wrapper'),
         loginBtn = document.querySelector('#login-btn'),
-        registerBtn = document.querySelector('#register-form'),
+        registerBtn = document.querySelector('#register-btn'),
         loginForm = document.querySelector('#login-form'),
         registerForm = document.querySelector('#register-form');
 
