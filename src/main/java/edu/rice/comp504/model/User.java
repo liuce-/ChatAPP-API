@@ -6,6 +6,7 @@ import org.eclipse.jetty.websocket.api.Session;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class User implements PropertyChangeListener {
 
@@ -15,7 +16,7 @@ public class User implements PropertyChangeListener {
     private String location;
 
     private Session session;
-    ArrayList<ChatRoom> chatRooms;
+    HashSet<ChatRoom> chatRooms;
 
     public Session getSession() {
         return session;
@@ -25,6 +26,17 @@ public class User implements PropertyChangeListener {
         this.session = session;
     }
 
+    public HashSet<ChatRoom> getChatRooms() {
+        return chatRooms;
+    }
+
+    public void setChatRooms(HashSet<ChatRoom> chatRooms) {
+        this.chatRooms = chatRooms;
+    }
+
+    public void joinChatRoom(ChatRoom chatRoom) {
+        chatRooms.add(chatRoom);
+    }
 
     public String getUsername() {
         return username;
@@ -66,12 +78,12 @@ public class User implements PropertyChangeListener {
         this.age = age;
         this.school = school;
         this.location = location;
-        chatRooms = new ArrayList<ChatRoom>();
+        chatRooms = new HashSet<>();
     }
 
     public User(String username) {
         this.username = username;
-        this.age = 20;
+        this.age = 24;
         this.school = "Rice University";
     }
 

@@ -29,7 +29,18 @@ public class ChatAppController {
             return dispatcher.createRoom(request.body());
         });
 
+        get("/joined_rooms/:username", (request, response) -> {
+            return dispatcher.getJoinedRoom(request.params(":username"));
+        });
 
+        get("/possible_rooms/:username", (request, response) -> {
+            return dispatcher.getPossibleRoom(request.params(":username"));
+        });
+
+        get("/member_list/:roomID", (request, response) -> {
+            int roomID = Integer.parseInt(request.params(":roomID"));
+            return dispatcher.getMemberList(roomID);
+        });
     }
 
     /**

@@ -23,7 +23,7 @@ public class JoinChatRoomCmd extends AbstractCmd {
     public void execute(User user) {
         JoinChatRoomResponse response = new JoinChatRoomResponse(roomID, newMember.getUsername());
         try {
-            user.getSession().getRemote().sendString(gson.toJson(response));
+            user.getSession().getRemote().sendString(response.getJsonRepresentation(gson));
         } catch (IOException e) {
             e.printStackTrace();
         }
