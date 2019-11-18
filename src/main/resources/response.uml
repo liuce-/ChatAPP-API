@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.rice.comp504.payload.response</OriginalElement>
+  <nodes>
+    <node x="725.0" y="164.0">edu.rice.comp504.payload.response.GetJoinedRoomResponse</node>
+    <node x="1746.0" y="163.5">edu.rice.comp504.payload.response.JoinChatRoomResponse</node>
+    <node x="1140.0" y="198.0">edu.rice.comp504.payload.response.ChatRoomChangeResponse</node>
+    <node x="416.0" y="164.0">edu.rice.comp504.payload.response.CreateRoomResponse</node>
+    <node x="2039.0" y="120.0">edu.rice.comp504.payload.response.SendChattingMsgResponse</node>
+    <node x="1433.0" y="164.0">edu.rice.comp504.payload.response.UserRegisterResponse</node>
+    <node x="2530.0" y="175.0">edu.rice.comp504.payload.response.SendChatRoomAnnouncementResponse</node>
+    <node x="2984.0" y="164.0">edu.rice.comp504.payload.response.UserLoginResponse</node>
+    <node x="0.0" y="164.0">edu.rice.comp504.payload.response.GetMemberListResponse</node>
+    <node x="1443.0" y="0.0">edu.rice.comp504.payload.response.ResponseAdapter</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.rice.comp504.payload.response.UserLoginResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.0" />
+      <point x="3120.5" y="70.0" />
+      <point x="1700.8333333333333" y="70.0" />
+      <point x="121.33333333333326" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.UserRegisterResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.SendChatRoomAnnouncementResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-48.0" />
+      <point x="2747.0" y="80.0" />
+      <point x="1670.5" y="80.0" />
+      <point x="91.0" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.GetMemberListResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.0" />
+      <point x="198.0" y="70.0" />
+      <point x="1458.1666666666667" y="70.0" />
+      <point x="-121.33333333333326" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.JoinChatRoomResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.5" />
+      <point x="1882.5" y="100.0" />
+      <point x="1609.8333333333333" y="100.0" />
+      <point x="30.333333333333258" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.CreateRoomResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.0" />
+      <point x="560.5" y="80.0" />
+      <point x="1488.5" y="80.0" />
+      <point x="-91.0" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.ChatRoomChangeResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-25.0" />
+      <point x="1276.5" y="100.0" />
+      <point x="1549.1666666666667" y="100.0" />
+      <point x="-30.333333333333258" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.GetJoinedRoomResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-59.0" />
+      <point x="922.5" y="90.0" />
+      <point x="1518.8333333333333" y="90.0" />
+      <point x="-60.66666666666674" y="25.0" />
+    </edge>
+    <edge source="edu.rice.comp504.payload.response.SendChattingMsgResponse" target="edu.rice.comp504.payload.response.ResponseAdapter">
+      <point x="0.0" y="-103.0" />
+      <point x="2274.5" y="90.0" />
+      <point x="1640.1666666666665" y="90.0" />
+      <point x="60.666666666666515" y="25.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5363729508196722" x="965.9999999999999" y="61.0" />
+  <SelectedNodes>
+    <node>edu.rice.comp504.payload.response.ResponseAdapter</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

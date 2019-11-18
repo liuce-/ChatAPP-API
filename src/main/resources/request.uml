@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.rice.comp504.payload.request</OriginalElement>
+  <nodes>
+    <node x="336.0" y="412.0">edu.rice.comp504.payload.request.JoinChatRoom</node>
+    <node x="366.0" y="228.0">edu.rice.comp504.payload.request.UserRegister</node>
+    <node x="0.0" y="412.0">edu.rice.comp504.payload.request.SendAnnouncement</node>
+    <node x="0.0" y="552.0">edu.rice.comp504.payload.request.Message</node>
+    <node x="241.0" y="552.0">edu.rice.comp504.payload.request.LoginMsg</node>
+    <node x="0.0" y="228.0">edu.rice.comp504.payload.request.SendChattingMsg</node>
+    <node x="0.0" y="0.0">edu.rice.comp504.payload.request.CreateRoom</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="145.5" y="155.0" />
+  <SelectedNodes>
+    <node>edu.rice.comp504.payload.request.JoinChatRoom</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
