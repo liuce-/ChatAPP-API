@@ -7,8 +7,6 @@ import edu.rice.comp504.payload.SendChattingMsg;
 import edu.rice.comp504.payload.response.SendChattingMsgResponse;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
