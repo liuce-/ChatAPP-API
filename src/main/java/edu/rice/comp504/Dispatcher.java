@@ -23,11 +23,10 @@ public class Dispatcher {
     // only one instance
     private static Dispatcher dispatcher = new Dispatcher();
 
-    public Map<String, User> allUsers = new ConcurrentHashMap<String, User>();
-    public Map<Session, User> userNameMap = new ConcurrentHashMap<>();
+    public Map<String, User> allUsers;
+    public Map<Session, User> userNameMap;
 
-    public Map<Integer, ChatRoom> chatRoomMap = new ConcurrentHashMap<>();
-    public int nextUserId = 1;
+    public Map<Integer, ChatRoom> chatRoomMap;
     public Gson gson;
 
     private PropertyChangeSupport pcs;
@@ -35,10 +34,10 @@ public class Dispatcher {
     private Dispatcher() {
         this.pcs = new PropertyChangeSupport(this);
         this.gson = new Gson();
-        this.allUsers = new HashMap<>();
-        this.userNameMap = new HashMap<>();
-        this.chatRoomMap = new HashMap<>();
-        
+        this.allUsers = new ConcurrentHashMap<String, User>();
+        this.userNameMap = new ConcurrentHashMap<>();
+        this.chatRoomMap = new ConcurrentHashMap<>();
+
     }
 
     public void handleMsg(Session userSession, String message) {
