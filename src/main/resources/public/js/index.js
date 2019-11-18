@@ -66,9 +66,9 @@
                 school: school
             })
         };
-        //let registerData = await fetch('/register', params);
+        let registerData = await fetch('/register', params);
 
-        let registerData = {res: 'true'};
+        //let registerData = {res: 'true'};
         if (registerData.res === 'true') {
             window.username = username.trim();
             // this should before location changes
