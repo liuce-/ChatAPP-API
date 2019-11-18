@@ -34,10 +34,12 @@ public class WebSocketController {
         // do nothing here.
     }
 
+
     /**
      * Close the user's session.
-     *
      * @param user The use whose session is closed.
+     * @param statusCode status code.
+     * @param reason reason.
      */
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
