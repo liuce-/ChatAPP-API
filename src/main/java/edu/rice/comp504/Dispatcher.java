@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * dispatcher for handling and dispatching the HTTP/WS request.
@@ -34,6 +36,7 @@ public class Dispatcher {
     public Gson gson;
 
     private PropertyChangeSupport pcs;
+    private Logger logger;
 
     /**
      * constructor.
@@ -44,7 +47,8 @@ public class Dispatcher {
         this.allUsers = new ConcurrentHashMap<String, User>();
         this.userNameMap = new ConcurrentHashMap<>();
         this.chatRoomMap = new ConcurrentHashMap<>();
-
+        this.logger = Logger.getLogger(Dispatcher.class.getName());
+        this.logger.setLevel(Level.INFO);
     }
 
     /**
@@ -132,6 +136,7 @@ public class Dispatcher {
      * @return response to be sent.
      */
     public String register(String body) {
+        logger.info("register with body " + body);
         UserRegister userRegister = gson.fromJson(body, UserRegister.class);
         UserRegisterResponse userRegisterResponse = new UserRegisterResponse(userRegister.getUsername(), false);
 
@@ -140,7 +145,7 @@ public class Dispatcher {
             allUsers.put(newUser.getUsername(), newUser);
             userRegisterResponse.setResult(true);
         }
-
+        logger.info("response with " + userRegisterResponse.getJsonRepresentation(gson));
         return userRegisterResponse.getJsonRepresentation(gson);
     }
 
