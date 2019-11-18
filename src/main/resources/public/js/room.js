@@ -23,7 +23,7 @@
     // send room id first
     let msg = {
         type: "enter_room",
-        info: JSON.stringify({username, room_id: roomId}),
+        info: JSON.stringify({username, roomID: roomId}),
     };
     socket.send(JSON.stringify(msg));
 
@@ -59,20 +59,19 @@
         let data = JSON.parse(ev.data);
         let type = data.type;
 
-        if (type === 'enter_room') {
-            roomTitle.innerHTML = `${roomTitle.innerHTML} ${data.info.room_name}`
-        } else if (type === 'announcement') {
+        if (type === 'announcement') {
             renderAnnouncement(`${data.info.username} announced: ${data.info.announcement}`);
         } else if (type === 'enter_room') {
-            if (data.info.room_id === roomId) {
+            // {type: "enter_room", info: {roomID: xx, username: xx}}
+            if (data.info.roomID === roomId) {
+                roomTitle.innerHTML = `${roomTitle.innerHTML} ${data.info.room_name}`
                 // Todo: add this to announcement
-                // {type: "enter_room", info: {room_id: xx, username: xx}}
                 renderAnnouncement(`${data.info.username} entered`);
                 // get member list
                 getPeopleList();
             }
         } else if (type === 'leave_room') {
-            if (data.info.room_id === roomId) {
+            if (data.info.roomID === roomId) {
                 // Todo: add this to announcement with leaving reason
                 // {type: “leave_room”, info: {username: xx, room_id: xx, reason: xx}}
                 renderAnnouncement(`${data.info.username} left since ${data.info.reason}`);
