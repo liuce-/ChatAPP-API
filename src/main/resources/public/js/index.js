@@ -4,7 +4,9 @@
         loginBtn = document.querySelector('#login-btn'),
         registerBtn = document.querySelector('#register-btn'),
         loginForm = document.querySelector('#login-form'),
-        registerForm = document.querySelector('#register-form');
+        registerForm = document.querySelector('#register-form'),
+        registerErr = document.querySelector('#register-err');
+
 
     const addScript = (src) => {
         let newScript = document.createElement('script');
@@ -67,14 +69,16 @@
             })
         };
         let registerData = await fetch('/register', params);
+        registerData = await registerData.json();
 
-        //let registerData = {res: 'true'};
-        if (registerData.res === 'true') {
+        if (registerData.result) {
             window.username = username.trim();
             // this should before location changes
             addScript("./js/websocket.js");
             addScript("./js/msgReminder.js");
             window.location.hash = '#/home';
+        } else {
+            registerErr.classList.remove('hidden');
         }
     });
 })();
