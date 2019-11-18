@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Dispatcher {
     // only one instance
-    private static Dispatcher dispatcher = new Dispatcher();
+    private static Dispatcher dispatcher;
 
     public Map<String, User> allUsers;
     public Map<Session, User> userNameMap;
@@ -49,8 +49,9 @@ public class Dispatcher {
 
     /**
      * handle websocket message.
+     *
      * @param userSession msg is sent in this session.
-     * @param message the msg.
+     * @param message     the msg.
      */
     public void handleMsg(Session userSession, String message) {
         Message msg = gson.fromJson(message, Message.class);
@@ -115,9 +116,10 @@ public class Dispatcher {
 
     /**
      * respond to close event.
-     * @param session this session was closed.
+     *
+     * @param session    this session was closed.
      * @param statusCode status code.
-     * @param reason the reason.
+     * @param reason     the reason.
      */
     public void closeSession(Session session, int statusCode, String reason) {
 
@@ -125,15 +127,16 @@ public class Dispatcher {
 
     /**
      * handler for register endpoint.
+     *
      * @param body the http payload.
      * @return response to be sent.
      */
     public String register(String body) {
         UserRegister userRegister = gson.fromJson(body, UserRegister.class);
-        UserRegisterResponse userRegisterResponse = new UserRegisterResponse(userRegister.getUserName(), false);
+        UserRegisterResponse userRegisterResponse = new UserRegisterResponse(userRegister.getUsername(), false);
 
-        if (!allUsers.containsKey(userRegister.getUserName())) {
-            User newUser = new User(userRegister.getUserName(), userRegister.getAge(), userRegister.getSchool(), userRegister.getLocation());
+        if (!allUsers.containsKey(userRegister.getUsername())) {
+            User newUser = new User(userRegister.getUsername(), userRegister.getAge(), userRegister.getSchool(), userRegister.getLocation());
             allUsers.put(newUser.getUsername(), newUser);
             userRegisterResponse.setResult(true);
         }
@@ -143,6 +146,7 @@ public class Dispatcher {
 
     /**
      * handler for creating room endpoint.
+     *
      * @param body payload.
      * @return response to be sent.
      */
@@ -170,6 +174,7 @@ public class Dispatcher {
 
     /**
      * handler for getting joined rooms of a user.
+     *
      * @param username get joined rooms of this user.
      * @return response containing all joined rooms.
      */
@@ -180,6 +185,7 @@ public class Dispatcher {
 
     /**
      * handler for getting possible rooms that a user is qualified to join.
+     *
      * @param username get possible rooms for this user.
      * @return response to be sent.
      */
@@ -189,6 +195,7 @@ public class Dispatcher {
 
     /**
      * handler for getter all members of a chat room.
+     *
      * @param roomID get members of this room.
      * @return response containing all users' info.
      */
@@ -204,6 +211,10 @@ public class Dispatcher {
      * @return dispatcher.
      */
     public static Dispatcher getOnly() {
+        if (dispatcher == null) {
+            dispatcher = new Dispatcher();
+        }
+
         return dispatcher;
     }
 

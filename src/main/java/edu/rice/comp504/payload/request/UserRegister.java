@@ -4,7 +4,7 @@ package edu.rice.comp504.payload.request;
  * payload of register endpoint.
  */
 public class UserRegister {
-    private String userName;
+    private String username;
     private int age;
     private String school;
     private String location;
@@ -12,13 +12,13 @@ public class UserRegister {
     /**
      * constructor.
      *
-     * @param userName new username.
+     * @param username new username.
      * @param age      age.
      * @param school   school.
      * @param location location.
      */
-    public UserRegister(String userName, int age, String school, String location) {
-        this.userName = userName;
+    public UserRegister(String username, int age, String school, String location) {
+        this.username = username;
         this.age = age;
         this.school = school;
         this.location = location;
@@ -29,8 +29,8 @@ public class UserRegister {
      *
      * @return username
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
