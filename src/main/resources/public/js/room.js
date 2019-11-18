@@ -38,7 +38,7 @@
             if (item.username === username) {
                 return `<li><span class="name">${item.username}${item.isOwner ? '<i class="own-icon">*</i>' : ''}</span></li>`
             } else {
-                return `<li><span class="name">${item.username}${item.isOwner ? '<i class="own-icon">*</i>' : ''}</span><span class="chat-btn btn" data-chat=${item.username}>Chat</span><span class="kick-btn btn ${item.isOwner ? '' : 'hidden'}" data-kick=${item.username}>Kick</span></li>`
+                return `<li><span class="name">${item.username}${item.isOwner ? '<i class="own-icon">*</i>' : ''}</span><span class="chat-btn btn" data-chat=${item.username}>Chat</span><span class="kick-btn btn ${item.isOwner ? '' : 'hidden'}" data-kick=${item.username}>Remove</span></li>`
             }
         });
         peopleListContainer.innerHTML = tpl.join("");
@@ -107,7 +107,7 @@
             } else if (target.dataset.kick) {
                 // kick
                 let msg = {
-                    type: "kick",
+                    type: "remove",
                     info: JSON.stringify({username, room_id: roomId, member: target.dataset.kick}),
                 };
                 socket.send(JSON.stringify(msg));
