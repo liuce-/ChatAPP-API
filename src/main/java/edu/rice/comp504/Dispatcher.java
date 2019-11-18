@@ -61,7 +61,7 @@ public class Dispatcher {
         Message msg = gson.fromJson(message, Message.class);
         switch (msg.getType()) {
             case "login": {
-                logger.info("user")
+                logger.info("user login with body" + msg.getInfo());
                 LoginMsg loginMsg = gson.fromJson(msg.getInfo(), LoginMsg.class);
                 UserLoginResponse response = new UserLoginResponse(null, false);
 
@@ -75,6 +75,7 @@ public class Dispatcher {
                     response.setUser(user);
                 }
                 try {
+                    logger.info("send login msg back to client with " + response.getJsonRepresentation(gson));
                     userSession.getRemote().sendString(response.getJsonRepresentation(gson));
                 } catch (IOException e) {
                     e.printStackTrace();
