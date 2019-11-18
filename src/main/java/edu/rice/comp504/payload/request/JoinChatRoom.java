@@ -1,4 +1,4 @@
-package edu.rice.comp504.payload;
+package edu.rice.comp504.payload.request;
 
 /**
  * Paylaod for joining a chat room

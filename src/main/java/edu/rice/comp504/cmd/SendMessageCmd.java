@@ -3,7 +3,7 @@ package edu.rice.comp504.cmd;
 import edu.rice.comp504.Dispatcher;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.SendChattingMsg;
+import edu.rice.comp504.payload.request.SendChattingMsg;
 import edu.rice.comp504.payload.response.SendChattingMsgResponse;
 
 import java.io.IOException;

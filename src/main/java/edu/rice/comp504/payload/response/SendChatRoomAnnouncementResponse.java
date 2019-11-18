@@ -1,7 +1,7 @@
 package edu.rice.comp504.payload.response;
 
 import com.google.gson.Gson;
-import edu.rice.comp504.payload.SendAnnouncement;
+import edu.rice.comp504.payload.request.SendAnnouncement;
 
 /**
  * Send a announcement to other members in a chat room.

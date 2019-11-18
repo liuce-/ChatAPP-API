@@ -1,4 +1,4 @@
-package edu.rice.comp504.payload;
+package edu.rice.comp504.payload.request;
 
 /**
  * payload of register endpoint.

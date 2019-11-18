@@ -7,7 +7,7 @@ import edu.rice.comp504.cmd.SendChatRoomAnnouncementCmd;
 import edu.rice.comp504.cmd.SendMessageCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.*;
+import edu.rice.comp504.payload.request.*;
 import edu.rice.comp504.payload.response.*;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -15,7 +15,6 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;

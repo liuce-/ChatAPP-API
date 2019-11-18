@@ -1,7 +1,7 @@
 package edu.rice.comp504.cmd;
 
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.SendAnnouncement;
+import edu.rice.comp504.payload.request.SendAnnouncement;
 import edu.rice.comp504.payload.response.SendChatRoomAnnouncementResponse;
 
 import java.io.IOException;

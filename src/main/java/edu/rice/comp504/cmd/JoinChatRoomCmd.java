@@ -1,7 +1,6 @@
 package edu.rice.comp504.cmd;
 
 import edu.rice.comp504.model.User;
-import edu.rice.comp504.payload.JoinChatRoom;
 import edu.rice.comp504.payload.response.JoinChatRoomResponse;
 
 import java.io.IOException;
