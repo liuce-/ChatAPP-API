@@ -139,7 +139,7 @@ public class Dispatcher {
     }
 
     public String getPossibleRoom(String username) {
-        return null;
+        return "Not implemented";
     }
 
     public String getMemberList(int roomID) {
