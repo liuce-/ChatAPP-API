@@ -1,6 +1,8 @@
 package edu.rice.comp504.payload.response;
 
-public class CreateRoomResponse {
+import com.google.gson.Gson;
+
+public class CreateRoomResponse  implements ResponseAdapter {
     private String roomName;
     private boolean result;
 
@@ -23,5 +25,10 @@ public class CreateRoomResponse {
     public CreateRoomResponse(String roomName, boolean result) {
         this.roomName = roomName;
         this.result = result;
+    }
+
+    @Override
+    public String getJsonRepresentation(Gson gson) {
+        return gson.toJson(this);
     }
 }

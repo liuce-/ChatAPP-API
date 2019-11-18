@@ -8,7 +8,6 @@ public class ChatRoom {
     private int id;
     String name;
     User owner;
-    HashSet<User> users;
     Restriction restriction;
 
     public ChatRoom(String name, Point ageRestriction, HashSet<String> locRestrictions, HashSet<String> schoolRestriction, User owner) {
@@ -69,32 +68,4 @@ public class ChatRoom {
         this.restriction = restriction;
     }
 
-    /**
-     * Add a user to this chat room (if qualified).
-     *
-     * @param user add this user.
-     * @return true if the user is qualified and added. False otherwise.
-     */
-    public boolean addUser(User user) {
-        if (restriction.isQualified(user)) {
-            users.add(user);
-            return true;
-        }
-        return false;
-
-    }
-
-    /**
-     * remove a user from a chat room
-     *
-     * @param user remove this user.
-     * @return true if the user is in the hashset and successfully remove it. False otherwise.
-     */
-    public boolean removeUser(User user) {
-        if (users.contains(user)) {
-            users.remove(user);
-            return true;
-        }
-        return false;
-    }
 }

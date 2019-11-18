@@ -2,11 +2,11 @@ package edu.rice.comp504.payload;
 
 public class SendAnnouncement {
     private int roomID;
-    private String[] announcementList;
+    private String announcement;
 
-    public SendAnnouncement(int roomID, String[] announcementList) {
+    public SendAnnouncement(int roomID, String announcement) {
         this.roomID = roomID;
-        this.announcementList = announcementList;
+        this.announcement = announcement;
     }
 
     public int getRoomID() {
@@ -17,11 +17,11 @@ public class SendAnnouncement {
         this.roomID = roomID;
     }
 
-    public String[] getAnnouncementList() {
-        return announcementList;
+    public String getAnnouncement() {
+        return announcement;
     }
 
-    public void setAnnouncementList(String[] announcementList) {
-        this.announcementList = announcementList;
+    public void setAnnouncement(String announcement) {
+        this.announcement = announcement;
     }
 }

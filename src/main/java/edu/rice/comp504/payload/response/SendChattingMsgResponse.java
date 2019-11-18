@@ -1,6 +1,8 @@
 package edu.rice.comp504.payload.response;
 
-public class SendChattingMsgResponse {
+import com.google.gson.Gson;
+
+public class SendChattingMsgResponse implements ResponseAdapter {
     private String sender;
     private String receiver;
     private String roomName;
@@ -63,5 +65,11 @@ public class SendChattingMsgResponse {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+
+    @Override
+    public String getJsonRepresentation(Gson gson) {
+        return gson.toJson(this);
     }
 }

@@ -9,10 +9,13 @@ import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import edu.rice.comp504.payload.*;
 import edu.rice.comp504.payload.response.CreateRoomResponse;
+import edu.rice.comp504.payload.response.GetJoinedRoomResponse;
+import edu.rice.comp504.payload.response.GetMemberListResponse;
 import edu.rice.comp504.payload.response.UserRegisterResponse;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.awt.*;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.util.Map;
@@ -61,31 +64,37 @@ public class Dispatcher {
             case "enter_room": {
                 JoinChatRoom joinChatRoom = gson.fromJson(msg.getInfo(), JoinChatRoom.class);
                 User newMemeber = allUsers.get(joinChatRoom.getUsername());
-                // TODO: check if user exists.
+                // TODO(Serena): check if user exists.
 
                 // notify others in this chatroom
                 JoinChatRoomCmd cmd = new JoinChatRoomCmd(newMemeber, joinChatRoom.getRoomID());
                 pcs.firePropertyChange(String.valueOf(joinChatRoom.getRoomID()), null, cmd);
 
-                // the new member should listen to this chatroom
+                // the new member should listen to this chat room
                 // (DO NOT switch the order of listening to this chat room and firing the evt).
                 pcs.addPropertyChangeListener(String.valueOf(joinChatRoom.getRoomID()), newMemeber);
+
+                // store this new chat room in user's room list.
+                newMemeber.joinChatRoom(chatRoomMap.get(joinChatRoom.getRoomID()));
             }
             break;
             case "announcement": {
                 SendAnnouncement sendAnnouncement = gson.fromJson(msg.getInfo(), SendAnnouncement.class);
-                SendChatRoomAnnouncementCmd sendChatRoomAnnouncementCmd = new SendChatRoomAnnouncementCmd(sendAnnouncement.getAnnouncementList());
+                SendChatRoomAnnouncementCmd sendChatRoomAnnouncementCmd = new SendChatRoomAnnouncementCmd(sendAnnouncement.getAnnouncement());
                 pcs.firePropertyChange(String.valueOf(sendAnnouncement.getRoomID()), null, sendChatRoomAnnouncementCmd);
             }
             break;
             case "chat": {
                 SendChattingMsg sendChattingMsg = gson.fromJson(msg.getInfo(), SendChattingMsg.class);
                 SendMessageCmd cmd = new SendMessageCmd(sendChattingMsg);
+
+                // TODO(Serena): check if the msg contains word "hate" before sending it.
+
                 pcs.firePropertyChange("user", null, cmd);
             }
             break;
             default:
-                System.out.println("No matching result for " + message);
+                System.out.println("No matched result for " + message);
         }
 
     }
@@ -104,7 +113,7 @@ public class Dispatcher {
             userRegisterResponse.setResult(true);
         }
 
-        return gson.toJson(userRegisterResponse);
+        return userRegisterResponse.getJsonRepresentation(gson);
     }
 
     public String createRoom(String body) {
@@ -121,23 +130,22 @@ public class Dispatcher {
         pcs.firePropertyChange("user", null, cmd);
 
         // response
-        return gson.toJson(new CreateRoomResponse(room.getName(), true));
+        return new CreateRoomResponse(room.getName(), true).getJsonRepresentation(gson);
     }
 
-    /**
-     * Broadcast message to all users.
-     *
-     * @param sender  The message sender.
-     * @param message The message.
-     */
-    public void broadcastMessage(User sender, String message) {
-        userNameMap.keySet().forEach(session -> {
-            try {
-                session.getRemote().sendString(gson.toJson(sender) + " says " + message);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+    public String getJoinedRoom(String username) {
+        User user = allUsers.get(username);
+        return new GetJoinedRoomResponse(user.getUsername(), user.getChatRooms()).getJsonRepresentation(gson);
+    }
+
+    public String getPossibleRoom(String username) {
+        return null;
+    }
+
+    public String getMemberList(int roomID) {
+        PropertyChangeListener[] listeners = pcs.getPropertyChangeListeners(String.valueOf(roomID));
+        GetMemberListResponse response = new GetMemberListResponse(roomID, listeners);
+        return response.getJsonRepresentation(gson);
     }
 
     /**

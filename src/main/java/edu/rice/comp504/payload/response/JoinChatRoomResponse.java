@@ -1,6 +1,8 @@
 package edu.rice.comp504.payload.response;
 
-public class JoinChatRoomResponse {
+import com.google.gson.Gson;
+
+public class JoinChatRoomResponse implements ResponseAdapter {
     private int roomID;
     private String username;
 
@@ -23,5 +25,10 @@ public class JoinChatRoomResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String getJsonRepresentation(Gson gson) {
+        return gson.toJson(this);
     }
 }

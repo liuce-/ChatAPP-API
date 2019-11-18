@@ -1,6 +1,8 @@
 package edu.rice.comp504.payload.response;
 
-public class UserRegisterResponse {
+import com.google.gson.Gson;
+
+public class UserRegisterResponse implements ResponseAdapter {
     private String username;
     private boolean result;
 
@@ -23,5 +25,10 @@ public class UserRegisterResponse {
 
     public void setResult(boolean result) {
         this.result = result;
+    }
+
+    @Override
+    public String getJsonRepresentation(Gson gson) {
+        return gson.toJson(this);
     }
 }
