@@ -8,10 +8,7 @@ import edu.rice.comp504.cmd.SendMessageCmd;
 import edu.rice.comp504.model.ChatRoom;
 import edu.rice.comp504.model.User;
 import edu.rice.comp504.payload.*;
-import edu.rice.comp504.payload.response.CreateRoomResponse;
-import edu.rice.comp504.payload.response.GetJoinedRoomResponse;
-import edu.rice.comp504.payload.response.GetMemberListResponse;
-import edu.rice.comp504.payload.response.UserRegisterResponse;
+import edu.rice.comp504.payload.response.*;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.awt.*;
@@ -44,7 +41,7 @@ public class Dispatcher {
         switch (msg.getType()) {
             case "login": {
                 LoginMsg loginMsg = gson.fromJson(msg.getInfo(), LoginMsg.class);
-                String response = "fail";
+                UserLoginResponse response = new UserLoginResponse(null, false);
 
                 // the user must has registered before.
                 if (allUsers.containsKey(loginMsg.getUsername())) {
@@ -52,10 +49,11 @@ public class Dispatcher {
                     userNameMap.put(userSession, user);
                     user.setSession(userSession);
                     pcs.addPropertyChangeListener("user", user);
-                    response = gson.toJson(user);
+                    response.setSuccess(true);
+                    response.setUser(user);
                 }
                 try {
-                    userSession.getRemote().sendString(response);
+                    userSession.getRemote().sendString(response.getJsonRepresentation(gson));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
