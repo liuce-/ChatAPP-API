@@ -171,6 +171,9 @@ public class Dispatcher {
         // create this room
         CreateRoom roomPayload = gson.fromJson(body, CreateRoom.class);
         // TODO: check if the owner exists.
+        if (!allUsers.containsKey(roomPayload.getOwnerName())) {
+            logger.severe("owner of this room does not exists " + roomPayload.getOwnerName());
+        }
         ChatRoom room = new ChatRoom(
             roomPayload.getRoomName(),
             new Point(roomPayload.getMinAge(), roomPayload.getMaxAge()),

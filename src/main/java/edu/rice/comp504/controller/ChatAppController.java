@@ -1,6 +1,7 @@
 package edu.rice.comp504.controller;
 
 import edu.rice.comp504.Dispatcher;
+import spark.Spark;
 
 import static spark.Spark.*;
 
@@ -41,6 +42,10 @@ public class ChatAppController {
             int roomID = Integer.parseInt(request.params(":roomID"));
             return dispatcher.getMemberList(roomID);
         });
+        Spark.exception(Exception.class, (exception, request, response) -> {
+            exception.printStackTrace();
+        });
+
     }
 
     /**
