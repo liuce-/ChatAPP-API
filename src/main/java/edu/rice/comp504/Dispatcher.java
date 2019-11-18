@@ -15,6 +15,7 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,6 +35,10 @@ public class Dispatcher {
     private Dispatcher() {
         this.pcs = new PropertyChangeSupport(this);
         this.gson = new Gson();
+        this.allUsers = new HashMap<>();
+        this.userNameMap = new HashMap<>();
+        this.chatRoomMap = new HashMap<>();
+        
     }
 
     public void handleMsg(Session userSession, String message) {
