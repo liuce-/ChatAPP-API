@@ -15,9 +15,15 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * dispatcher for handling and dispatching the HTTP/WS request.
+ */
 public class Dispatcher {
     // only one instance
     private static Dispatcher dispatcher = new Dispatcher();
@@ -30,6 +36,9 @@ public class Dispatcher {
 
     private PropertyChangeSupport pcs;
 
+    /**
+     * constructor.
+     */
     private Dispatcher() {
         this.pcs = new PropertyChangeSupport(this);
         this.gson = new Gson();
@@ -39,6 +48,11 @@ public class Dispatcher {
 
     }
 
+    /**
+     * handle websocket message.
+     * @param userSession msg is sent in this session.
+     * @param message the msg.
+     */
     public void handleMsg(Session userSession, String message) {
         Message msg = gson.fromJson(message, Message.class);
         switch (msg.getType()) {
@@ -100,10 +114,21 @@ public class Dispatcher {
 
     }
 
+    /**
+     * respond to close event.
+     * @param session this session was closed.
+     * @param statusCode status code.
+     * @param reason the reason.
+     */
     public void closeSession(Session session, int statusCode, String reason) {
 
     }
 
+    /**
+     * handler for register endpoint.
+     * @param body the http payload.
+     * @return response to be sent.
+     */
     public String register(String body) {
         UserRegister userRegister = gson.fromJson(body, UserRegister.class);
         UserRegisterResponse userRegisterResponse = new UserRegisterResponse(userRegister.getUserName(), false);
@@ -117,11 +142,21 @@ public class Dispatcher {
         return userRegisterResponse.getJsonRepresentation(gson);
     }
 
+    /**
+     * handler for creating room endpoint.
+     * @param body payload.
+     * @return response to be sent.
+     */
     public String createRoom(String body) {
         // create this room
         CreateRoom roomPayload = gson.fromJson(body, CreateRoom.class);
         // TODO: check if the owner exists.
-        ChatRoom room = new ChatRoom(roomPayload.getRoomName(), new Point(roomPayload.getMinAge(), roomPayload.getMaxAge()), roomPayload.getLocation(), roomPayload.getSchool(), allUsers.get(roomPayload.getOwnerName()));
+        ChatRoom room = new ChatRoom(
+            roomPayload.getRoomName(),
+            new Point(roomPayload.getMinAge(), roomPayload.getMaxAge()),
+            new HashSet<String>(Arrays.asList(roomPayload.getLocation())),
+            new HashSet<String>(Arrays.asList(roomPayload.getSchool())),
+            allUsers.get(roomPayload.getOwnerName()));
 
         chatRoomMap.put(room.getId(), room);
         pcs.addPropertyChangeListener(String.valueOf(room.getId()), room.getOwner());
@@ -134,15 +169,30 @@ public class Dispatcher {
         return new CreateRoomResponse(room.getName(), true).getJsonRepresentation(gson);
     }
 
+    /**
+     * handler for getting joined rooms of a user.
+     * @param username get joined rooms of this user.
+     * @return response containing all joined rooms.
+     */
     public String getJoinedRoom(String username) {
         User user = allUsers.get(username);
         return new GetJoinedRoomResponse(user.getUsername(), user.getChatRooms()).getJsonRepresentation(gson);
     }
 
+    /**
+     * handler for getting possible rooms that a user is qualified to join.
+     * @param username get possible rooms for this user.
+     * @return response to be sent.
+     */
     public String getPossibleRoom(String username) {
         return "Not implemented";
     }
 
+    /**
+     * handler for getter all members of a chat room.
+     * @param roomID get members of this room.
+     * @return response containing all users' info.
+     */
     public String getMemberList(int roomID) {
         PropertyChangeListener[] listeners = pcs.getPropertyChangeListeners(String.valueOf(roomID));
         GetMemberListResponse response = new GetMemberListResponse(roomID, listeners);
