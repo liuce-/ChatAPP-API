@@ -109,6 +109,7 @@ public class Dispatcher {
             }
             break;
             case "announcement": {
+                logger.info("sending announcement with payload " + msg.getInfo());
                 SendAnnouncement sendAnnouncement = gson.fromJson(msg.getInfo(), SendAnnouncement.class);
                 SendChatRoomAnnouncementCmd sendChatRoomAnnouncementCmd = new SendChatRoomAnnouncementCmd(sendAnnouncement);
                 pcs.firePropertyChange(String.valueOf(sendAnnouncement.getRoomID()), null, sendChatRoomAnnouncementCmd);

@@ -14,6 +14,7 @@ public class SendChatRoomAnnouncementCmd extends AbstractCmd {
 
     /**
      * constructor.
+     *
      * @param announcement send this announcement.
      */
     public SendChatRoomAnnouncementCmd(SendAnnouncement announcement) {
@@ -22,12 +23,14 @@ public class SendChatRoomAnnouncementCmd extends AbstractCmd {
 
     /**
      * Send this announcement to this user.
+     *
      * @param user Send this announcement to this user.
      */
     @Override
     public void execute(User user) {
         try {
             SendChatRoomAnnouncementResponse response = new SendChatRoomAnnouncementResponse(announcement);
+            logger.info("send announcement to member " + user.getUsername() + "with msg" + response.getJsonRepresentation(gson));
             user.getSession().getRemote().sendString(response.getJsonRepresentation(gson));
         } catch (IOException e) {
             e.printStackTrace();
