@@ -7,8 +7,6 @@ import edu.rice.comp504.payload.SendChattingMsg;
 import edu.rice.comp504.payload.response.SendChattingMsgResponse;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -36,7 +34,7 @@ public class SendMessageCmd extends AbstractCmd {
                 chatRoom.getOwner().getUsername(),
                 payload.getMsg());
             try {
-                user.getSession().getRemote().sendString(gson.toJson(response));
+                user.getSession().getRemote().sendString(response.getJsonRepresentation(gson));
             } catch (IOException e) {
                 e.printStackTrace();
             }
