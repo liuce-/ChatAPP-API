@@ -45,7 +45,7 @@ public class WebSocketController {
     }
 
     /**
-     * Send a message.
+     * Receive a message.
      *
      * @param user    The session user sending the message.
      * @param message The message to be sent.

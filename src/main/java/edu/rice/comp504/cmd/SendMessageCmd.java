@@ -10,17 +10,27 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * Send message to the user.
+ */
 public class SendMessageCmd extends AbstractCmd {
     private HashSet<String> receivers;
     private SendChattingMsg payload;
 
+    /**
+     * Constructor.
+     * @param payload payload.
+     */
     public SendMessageCmd(SendChattingMsg payload) {
         this.payload = payload;
         receivers = new HashSet<String>();
         receivers.addAll(Arrays.asList(payload.getReceiver()));
     }
 
-
+    /**
+     * send message to this user.
+     * @param user execute this cmd on this user.
+     */
     @Override
     public void execute(User user) {
 
